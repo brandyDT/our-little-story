@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Our Little Moments</title>
+
+
+  <!-- =========================================
+       GOOGLE FONTS
+  ========================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =========================================
+       MAIN CSS
+  ========================================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       HERO
+  ========================================== -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+
+      <p class="eyebrow">
+        A PERSONAL ARCHIVE
+      </p>
+
+
+      <h1>
+        Our Little<br>
+        Moments
+      </h1>
+
+
+      <p class="hero-description">
+        Some moments are small,<br>
+        but worth remembering.
+      </p>
+
+
+      <!-- =====================================
+           LITTLE SUMMARY
+      ====================================== -->
+
+      <div class="hero-summary">
+
+
+        <!-- ===================================
+             BRANDON
+        ==================================== -->
+
+        <a
+          href="brandon.html"
+          class="summary-item hero-summary-item"
+          data-category="brandon"
+        >
+
+          <span
+            id="brandonCount"
+            class="summary-number"
+          >
+            0
+          </span>
+
+          <span class="summary-label">
+            Brandon
+          </span>
+
+          <span class="summary-description">
+            memories
+          </span>
+
+        </a>
+
+
+        <!-- ===================================
+             NURMA
+        ==================================== -->
+
+        <a
+          href="nurma.html"
+          class="summary-item hero-summary-item"
+          data-category="nurma"
+        >
+
+          <span
+            id="nurmaCount"
+            class="summary-number"
+          >
+            0
+          </span>
+
+          <span class="summary-label">
+            Nurma
+          </span>
+
+          <span class="summary-description">
+            memories
+          </span>
+
+        </a>
+
+
+        <!-- ===================================
+             MOMENTS
+        ==================================== -->
+
+        <a
+          href="moments.html"
+          class="summary-item hero-summary-item"
+          data-category="moments"
+        >
+
+          <span
+            id="momentsCount"
+            class="summary-number"
+          >
+            0
+          </span>
+
+          <span class="summary-label">
+            Moments
+          </span>
+
+          <span class="summary-description">
+            together
+          </span>
+
+        </a>
+
+
+      </div>
+
+
+      <!-- =====================================
+           EXPLORE BUTTON
+      ====================================== -->
+
+      <button
+        class="explore-button"
+        onclick="scrollToMoments()"
+      >
+
+        Explore
+
+        <span>
+          ↓
+        </span>
+
+      </button>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       PHOTO LIGHTBOX
+  ========================================== -->
+
+  <div
+    id="photoLightbox"
+    class="photo-lightbox"
+    onclick="closePhotoPreview()"
+  >
+
+
+    <!-- CLOSE BUTTON -->
+
+    <button
+      class="photo-lightbox-close"
+      onclick="event.stopPropagation(); closePhotoPreview()"
+      aria-label="Close photo"
+    >
+      ×
+    </button>
+
+
+    <!-- LIGHTBOX CONTENT -->
+
+    <div
+      class="photo-lightbox-content"
+      onclick="event.stopPropagation()"
+    >
+
+      <img
+        id="photoLightboxImage"
+        class="photo-lightbox-image"
+        src=""
+        alt="Full photo"
+      >
+
+
+      <div
+        id="photoLightboxCaption"
+        class="photo-lightbox-caption"
+      ></div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       MAIN CONTENT
+  ========================================== -->
+
+  <main id="moments">
+
+
+    <!-- =======================================
+         CALENDAR
+    ======================================== -->
+
+    <section class="calendar-section">
+
+
+      <!-- SECTION HEADING -->
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          A LOOK BACK
+        </p>
+
+        <h2>
+          Important Dates
+        </h2>
+
+        <p>
+          A few days worth remembering.
+        </p>
+
+      </div>
+
+
+      <!-- =====================================
+           CALENDAR CONTAINER
+      ====================================== -->
+
+      <div class="calendar-container">
+
+
+        <!-- CALENDAR HEADER -->
+
+        <div class="calendar-header">
+
+
+          <!-- PREVIOUS MONTH -->
+
+          <button
+            id="previousMonth"
+            class="calendar-nav"
+            aria-label="Previous month"
+          >
+            ←
+          </button>
+
+
+          <!-- CURRENT MONTH -->
+
+          <div>
+
+            <h3 id="calendarMonth">
+              August
+            </h3>
+
+            <span id="calendarYear">
+              2026
+            </span>
+
+          </div>
+
+
+          <!-- NEXT MONTH -->
+
+          <button
+            id="nextMonth"
+            class="calendar-nav"
+            aria-label="Next month"
+          >
+            →
+          </button>
+
+
+        </div>
+
+
+        <!-- ===================================
+             WEEKDAYS
+        ==================================== -->
+
+        <div class="calendar-weekdays">
+
+          <span>
+            MON
+          </span>
+
+          <span>
+            TUE
+          </span>
+
+          <span>
+            WED
+          </span>
+
+          <span>
+            THU
+          </span>
+
+          <span>
+            FRI
+          </span>
+
+          <span>
+            SAT
+          </span>
+
+          <span>
+            SUN
+          </span>
+
+        </div>
+
+
+        <!-- ===================================
+             CALENDAR DAYS
+        ==================================== -->
+
+        <div
+          id="calendarDays"
+          class="calendar-days"
+        ></div>
+
+
+      </div>
+
+
+      <!-- =====================================
+           SELECTED DATE
+      ====================================== -->
+
+      <div
+        id="selectedMoment"
+        class="selected-moment hidden"
+      ></div>
+
+
+    </section>
+
+
+    <!-- =======================================
+         IMPORTANT DATES LIST
+    ======================================== -->
+
+    <section class="important-section">
+
+
+      <!-- SECTION HEADING -->
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          MARKED MOMENTS
+        </p>
+
+        <h2>
+          Dates to Remember
+        </h2>
+
+      </div>
+
+
+      <!-- IMPORTANT DATES -->
+
+      <div
+        id="importantDates"
+        class="important-dates"
+      ></div>
+
+
+    </section>
+
+
+    <!-- =======================================
+         FEATURED MOMENTS
+    ======================================== -->
+
+    <section class="featured-section">
+
+
+      <!-- SECTION HEADING -->
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          RECENTLY REMEMBERED
+        </p>
+
+        <h2>
+          A Few Moments
+        </h2>
+
+      </div>
+
+
+      <!-- FEATURED MOMENTS -->
+
+      <div
+        id="featuredMoments"
+        class="featured-moments"
+      ></div>
+
+
+      <!-- VIEW ALL -->
+
+      <div class="view-all-container">
+
+        <button
+          class="text-button"
+          onclick="openMoments()"
+        >
+          View all moments →
+        </button>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+
+  <footer>
+
+
+    <!-- =====================================
+         FOOTER TITLE
+    ====================================== -->
+
+    <p class="footer-title">
+      OUR LITTLE MOMENTS
+    </p>
+
+
+    <!-- =====================================
+         FOOTER SUBTITLE
+    ====================================== -->
+
+    <span class="footer-subtitle">
+      A collection of little memories.
+    </span>
+
+
+    <!-- =====================================
+         SITE CREDIT
+    ====================================== -->
+
+    <span class="site-credit">
+      Made by Brandon 2026
+    </span>
+
+
+    <!-- =====================================
+         RELATIONSHIP MARK
+    ====================================== -->
+
+    <small class="site-watermark">
+
+      <span class="watermark-name">
+        Brandon
+      </span>
+
+      <span
+        class="heart-icon"
+        aria-label="love"
+      >
+        ♥
+      </span>
+
+      <span class="watermark-name">
+        Nurma
+      </span>
+
+    </small>
+
+
+  </footer>
+
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
+  <script src="script.js"></script>
+
+
+</body>
+
+</html>

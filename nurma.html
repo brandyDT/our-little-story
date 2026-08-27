@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Nurma Moments — Princess Little Moments</title>
+
+
+  <!-- ============================================
+       GOOGLE FONTS
+  ============================================ -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- ============================================
+       MAIN CSS
+  ============================================ -->
+
+  <link
+    rel="stylesheet"
+    href="nurma.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- ============================================
+       HEADER
+  ============================================ -->
+
+  <header class="moments-header">
+
+    <a
+      href="index.html"
+      class="back-button"
+    >
+      ← Our Little Moments
+    </a>
+
+
+    <div class="page-title">
+
+      <div class="eyebrow">
+        Nurma STORY
+      </div>
+
+      <h1>
+        Nurma Moments
+      </h1>
+
+      <p>
+        Little moments that became Nurma memories.
+      </p>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ============================================
+       MAIN CONTENT
+  ============================================ -->
+
+  <main class="moments-container">
+
+
+    <!-- ============================================
+         FILTER
+    ============================================ -->
+
+    <section
+      class="moments-filter"
+      id="momentsFilter"
+    >
+
+
+      <!-- ==========================================
+           YEAR FILTER
+      ========================================== -->
+
+      <div
+        class="filter-dropdown"
+        id="yearDropdown"
+      >
+
+        <button
+          type="button"
+          class="filter-button"
+          id="yearButton"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+
+          <span id="yearButtonText">
+            Tahun
+          </span>
+
+          <span class="filter-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="filter-menu"
+          id="yearFilter"
+          role="listbox"
+        ></div>
+
+      </div>
+
+
+
+      <!-- ==========================================
+           MONTH FILTER
+      ========================================== -->
+
+      <div
+        class="filter-dropdown"
+        id="monthDropdown"
+      >
+
+        <button
+          type="button"
+          class="filter-button"
+          id="monthButton"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+
+          <span id="monthButtonText">
+            Bulan
+          </span>
+
+          <span class="filter-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="filter-menu"
+          id="monthFilter"
+          role="listbox"
+        ></div>
+
+      </div>
+
+
+
+      <!-- ==========================================
+           DATE FILTER
+      ========================================== -->
+
+      <div
+        class="filter-dropdown"
+        id="dateDropdown"
+      >
+
+        <button
+          type="button"
+          class="filter-button"
+          id="dateButton"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+
+          <span id="dateButtonText">
+            Tanggal
+          </span>
+
+          <span class="filter-arrow">
+            ▾
+          </span>
+
+        </button>
+
+
+        <div
+          class="filter-menu"
+          id="dateFilter"
+          role="listbox"
+        ></div>
+
+      </div>
+
+
+    </section>
+
+
+
+    <!-- ============================================
+         TIMELINE
+    ============================================ -->
+
+    <section class="moments-content">
+
+      <div
+        id="momentsTimeline"
+        class="moments-timeline"
+      >
+
+        <div class="loading">
+          Loading our moments...
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- ============================================
+       PHOTO LIGHTBOX
+  ============================================ -->
+
+  <div
+    id="photoLightbox"
+    class="photo-lightbox"
+    onclick="closePhotoPreview()"
+  >
+
+
+    <!-- ==========================================
+         CLOSE BUTTON
+    ========================================== -->
+
+    <button
+      type="button"
+      class="photo-lightbox-close"
+      onclick="event.stopPropagation(); closePhotoPreview()"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+
+    <!-- ==========================================
+         LIGHTBOX CONTENT
+    ========================================== -->
+
+    <div
+      class="photo-lightbox-content"
+      onclick="event.stopPropagation()"
+    >
+
+      <img
+        id="photoLightboxImage"
+        class="photo-lightbox-image"
+        src=""
+        alt=""
+      >
+
+
+      <div
+        id="photoLightboxCaption"
+        class="photo-lightbox-caption"
+      ></div>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- ============================================
+       FOOTER
+       SAME STRUCTURE AS HOME
+  ============================================ -->
+
+  <footer>
+
+
+    <!-- ==========================================
+         FOOTER TITLE
+    ========================================== -->
+
+    <p class="footer-title">
+      OUR LITTLE MOMENTS
+    </p>
+
+
+    <!-- ==========================================
+         FOOTER SUBTITLE
+    ========================================== -->
+
+    <span class="footer-subtitle">
+      A collection of little memories.
+    </span>
+
+
+    <!-- ==========================================
+         SITE CREDIT
+    ========================================== -->
+
+    <span class="site-credit">
+      Made by Brandon 2026
+    </span>
+
+
+    <!-- ==========================================
+         RELATIONSHIP MARK
+    ========================================== -->
+
+    <small class="site-watermark">
+      Brandon <span class="heart-icon" aria-label="love">♥</span> Nurma
+    </small>
+
+
+  </footer>
+
+
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================ -->
+
+  <script src="nurma.js"></script>
+
+
+</body>
+
+</html>
