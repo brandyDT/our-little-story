@@ -2,7 +2,6 @@
    CONFIGURATION
 ============================================ */
 
-
 /*
  * GANTI URL DI BAWAH INI
  * dengan URL Web App Apps Script Anda.
@@ -18,8 +17,24 @@ const API_URL =
 
 let memories = [];
 
-let currentDate =
-  new Date();
+let currentDate = new Date();
+
+let selectedDate = null;
+
+
+/*
+ * Recent Moments Preview
+ */
+
+let recentPreviewPhotos = [];
+
+let recentPreviewIndex = 0;
+
+let recentPreviewInterval = null;
+
+let recentPreviewVisibleCount = 3;
+
+let recentPreviewIsAnimating = false;
 
 
 /* ============================================
@@ -78,6 +93,8 @@ async function loadMemories() {
 
     renderFeaturedMoments();
 
+    renderRecentMomentsPreview();
+
 
   } catch (error) {
 
@@ -94,6 +111,939 @@ async function loadMemories() {
 
 
 /* ============================================
+   RECENT MOMENTS PHOTO PREVIEW
+============================================ */
+
+/*
+ * Infinite carousel.
+ *
+ * Konsep:
+ *
+ * ORIGINAL:
+ *
+ * 1 2 3 4 5
+ *
+ *
+ * TRACK:
+ *
+ * 1 2 3 4 5 1 2 3 4 5 ...
+ *
+ *
+ * Yang terlihat:
+ *
+ * 1 2 3
+ *
+ * kemudian:
+ *
+ * 2 3 4
+ *
+ * kemudian:
+ *
+ * 3 4 5
+ *
+ * kemudian:
+ *
+ * 4 5 1
+ *
+ * kemudian:
+ *
+ * 5 1 2
+ *
+ * kemudian:
+ *
+ * 1 2 3
+ *
+ *
+ * Tidak ada reset visual.
+ */
+
+function renderRecentMomentsPreview() {
+
+  const container =
+    document.getElementById(
+      "recentMomentsPreview"
+    );
+
+
+  /*
+   * Jika element belum ada,
+   * hentikan fungsi.
+   */
+
+  if (!container) {
+
+    return;
+
+  }
+
+
+  /*
+   * Stop animation sebelumnya.
+   */
+
+  stopRecentMomentsAnimation();
+
+
+  /*
+   * Reset state.
+   */
+
+  recentPreviewPhotos = [];
+
+  recentPreviewIndex = 0;
+
+  recentPreviewIsAnimating = false;
+
+
+  /*
+   * Ambil seluruh moment.
+   */
+
+  const momentMemories =
+    memories
+      .filter(
+        memory =>
+          memory.category ===
+          "moments"
+      )
+      .sort(
+        (a, b) =>
+          new Date(b.date) -
+          new Date(a.date)
+      );
+
+
+  /*
+   * Ambil beberapa moment terbaru.
+   *
+   * Sampai 5 moment terbaru.
+   */
+
+  const latestMoments =
+    momentMemories.slice(
+      0,
+      5
+    );
+
+
+  /*
+   * Masukkan seluruh foto.
+   */
+
+  latestMoments.forEach(
+    memory => {
+
+      if (
+        !memory.photos ||
+        !Array.isArray(
+          memory.photos
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      memory.photos.forEach(
+        photo => {
+
+          if (
+            photo &&
+            photo.image_url
+          ) {
+
+            recentPreviewPhotos.push({
+
+              url:
+                photo.image_url,
+
+              caption:
+                memory.description || "",
+
+              date:
+                memory.date_display || "",
+
+              location:
+                memory.location || ""
+
+            });
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+   * Tidak ada foto.
+   */
+
+  if (
+    recentPreviewPhotos.length === 0
+  ) {
+
+    container.innerHTML = "";
+
+    return;
+
+  }
+
+
+  /*
+   * ========================================
+   * PERSIAPAN FOTO
+   * ========================================
+   *
+   * Minimal kita membutuhkan 3 foto
+   * untuk memenuhi viewport.
+   *
+   * Jika hanya ada 1 atau 2 foto,
+   * foto akan diulang.
+   */
+
+  let basePhotos =
+    [...recentPreviewPhotos];
+
+
+  if (
+    basePhotos.length <
+    recentPreviewVisibleCount
+  ) {
+
+    const original =
+      [...basePhotos];
+
+
+    if (
+      original.length > 0
+    ) {
+
+      while (
+        basePhotos.length <
+        recentPreviewVisibleCount
+      ) {
+
+        basePhotos.push(
+          original[
+            basePhotos.length %
+              original.length
+          ]
+        );
+
+      }
+
+    }
+
+  }
+
+
+  /*
+   * ========================================
+   * INFINITE TRACK
+   * ========================================
+   *
+   * Kita render beberapa putaran sekaligus.
+   *
+   * Dengan 5 foto:
+   *
+   * 1 2 3 4 5
+   * 1 2 3 4 5
+   * 1 2 3 4 5
+   *
+   * Jadi browser sudah memiliki
+   * foto berikutnya sebelum animasi berjalan.
+   *
+   * Kita menggunakan 4 set agar
+   * tidak terjadi visible reset.
+   */
+
+  const repeatCount = 4;
+
+
+  const carouselPhotos = [];
+
+
+  for (
+    let i = 0;
+    i < repeatCount;
+    i++
+  ) {
+
+    carouselPhotos.push(
+      ...basePhotos
+    );
+
+  }
+
+
+  /*
+   * ========================================
+   * INITIAL POSITION
+   * ========================================
+   *
+   * Kita mulai dari set kedua.
+   *
+   * Misalnya:
+   *
+   * SET 1:
+   * 1 2 3 4 5
+   *
+   * SET 2:
+   * 1 2 3 4 5
+   *
+   * SET 3:
+   * 1 2 3 4 5
+   *
+   * SET 4:
+   * 1 2 3 4 5
+   *
+   *
+   * Posisi awal berada di:
+   *
+   * SET 2 -> 1 2 3
+   *
+   * Sehingga masih ada ruang
+   * untuk bergerak ke kiri maupun kanan.
+   */
+
+  recentPreviewIndex =
+    basePhotos.length;
+
+
+  /*
+   * ========================================
+   * HTML
+   * ========================================
+   */
+
+  container.innerHTML = `
+
+    <div class="recent-preview-wrapper">
+
+      <div
+        class="recent-preview-track"
+        id="recentPreviewTrack"
+      >
+
+        ${
+          carouselPhotos
+            .map(
+              (photo, index) => `
+
+                <div
+                  class="recent-preview-item"
+                  data-preview-index="${index}"
+                >
+
+                  <img
+                    src="${escapeAttribute(
+                      photo.url
+                    )}"
+                    alt="${escapeAttribute(
+                      photo.caption
+                    )}"
+                    loading="eager"
+                    decoding="async"
+                    draggable="false"
+                  >
+
+                </div>
+
+              `
+            )
+            .join("")
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  /*
+   * ========================================
+   * IMAGE CLICK EVENT
+   * ========================================
+   */
+
+  const images =
+    container.querySelectorAll(
+      ".recent-preview-item img"
+    );
+
+
+  images.forEach(
+    (img, index) => {
+
+      img.addEventListener(
+        "click",
+        () => {
+
+          const photo =
+            carouselPhotos[index];
+
+
+          if (!photo) {
+
+            return;
+
+          }
+
+
+          openPhotoPreview(
+            photo.url,
+            photo.caption
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+   * ========================================
+   * PRELOAD
+   * ========================================
+   *
+   * Semua foto sudah kita preload.
+   *
+   * Jadi ketika foto 4 atau 5 masuk
+   * ke viewport, browser tidak baru
+   * mulai mengambil gambarnya.
+   */
+
+  preloadRecentPreviewImages(
+    basePhotos
+  );
+
+
+  /*
+   * Tunggu layout selesai sebelum
+   * menentukan posisi awal.
+   */
+
+  requestAnimationFrame(
+    () => {
+
+      requestAnimationFrame(
+        () => {
+
+          setRecentPreviewPosition(
+            false
+          );
+
+
+          /*
+           * Mulai animasi jika foto
+           * lebih dari 3.
+           */
+
+          if (
+            basePhotos.length >
+            recentPreviewVisibleCount
+          ) {
+
+            startRecentMomentsAnimation();
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* ============================================
+   PRELOAD RECENT PREVIEW IMAGES
+============================================ */
+
+function preloadRecentPreviewImages(
+  photos
+) {
+
+  if (
+    !photos ||
+    photos.length === 0
+  ) {
+
+    return;
+
+  }
+
+
+  photos.forEach(
+    photo => {
+
+      if (
+        !photo ||
+        !photo.url
+      ) {
+
+        return;
+
+      }
+
+
+      const img =
+        new Image();
+
+
+      img.decoding =
+        "async";
+
+
+      img.src =
+        photo.url;
+
+    }
+  );
+
+}
+
+
+/* ============================================
+   GET CAROUSEL METRICS
+============================================ */
+
+function getRecentPreviewMetrics() {
+
+  const track =
+    document.getElementById(
+      "recentPreviewTrack"
+    );
+
+
+  if (!track) {
+
+    return null;
+
+  }
+
+
+  const items =
+    track.querySelectorAll(
+      ".recent-preview-item"
+    );
+
+
+  if (
+    items.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  const firstItem =
+    items[0];
+
+
+  const itemRect =
+    firstItem.getBoundingClientRect();
+
+
+  const itemWidth =
+    itemRect.width;
+
+
+  const trackStyle =
+    window.getComputedStyle(
+      track
+    );
+
+
+  let gap =
+    parseFloat(
+      trackStyle.columnGap
+    );
+
+
+  if (
+    Number.isNaN(gap)
+  ) {
+
+    gap =
+      parseFloat(
+        trackStyle.gap
+      );
+
+  }
+
+
+  if (
+    Number.isNaN(gap)
+  ) {
+
+    gap = 0;
+
+  }
+
+
+  return {
+
+    track,
+
+    items,
+
+    itemWidth,
+
+    gap,
+
+    step:
+      itemWidth + gap
+
+  };
+
+}
+
+
+/* ============================================
+   SET INITIAL POSITION
+============================================ */
+
+function setRecentPreviewPosition(
+  animate = false
+) {
+
+  const metrics =
+    getRecentPreviewMetrics();
+
+
+  if (!metrics) {
+
+    return;
+
+  }
+
+
+  const {
+    track,
+    step
+  } = metrics;
+
+
+  const translateX =
+    recentPreviewIndex *
+    step;
+
+
+  if (animate) {
+
+    track.style.transition =
+      "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+
+  } else {
+
+    track.style.transition =
+      "none";
+
+  }
+
+
+  track.style.transform =
+    `translate3d(-${translateX}px, 0, 0)`;
+
+}
+
+
+/* ============================================
+   START RECENT MOMENTS ANIMATION
+============================================ */
+
+function startRecentMomentsAnimation() {
+
+  /*
+   * Stop interval lama.
+   */
+
+  stopRecentMomentsAnimation();
+
+
+  /*
+   * Pastikan state animasi reset.
+   */
+
+  recentPreviewIsAnimating =
+    false;
+
+
+  /*
+   * Mulai interval.
+   *
+   * Setiap 2.8 detik satu posisi bergeser.
+   */
+
+  recentPreviewInterval =
+    setInterval(
+      () => {
+
+        rotateRecentMomentPhoto();
+
+      },
+      2800
+    );
+
+}
+
+
+/* ============================================
+   STOP RECENT MOMENTS ANIMATION
+============================================ */
+
+function stopRecentMomentsAnimation() {
+
+  if (
+    recentPreviewInterval
+  ) {
+
+    clearInterval(
+      recentPreviewInterval
+    );
+
+
+    recentPreviewInterval =
+      null;
+
+  }
+
+}
+
+
+/* ============================================
+   ROTATE RECENT MOMENT PHOTO
+============================================ */
+
+function rotateRecentMomentPhoto() {
+
+  /*
+   * Hindari double animation.
+   */
+
+  if (
+    recentPreviewIsAnimating
+  ) {
+
+    return;
+
+  }
+
+
+  const metrics =
+    getRecentPreviewMetrics();
+
+
+  if (!metrics) {
+
+    return;
+
+  }
+
+
+  const {
+    track,
+    step
+  } = metrics;
+
+
+  const totalOriginalPhotos =
+    recentPreviewPhotos.length;
+
+
+  /*
+   * Jika tidak cukup foto,
+   * tidak perlu melakukan carousel.
+   */
+
+  if (
+    totalOriginalPhotos <=
+    recentPreviewVisibleCount
+  ) {
+
+    return;
+
+  }
+
+
+  /*
+   * Tandai sedang animasi.
+   */
+
+  recentPreviewIsAnimating =
+    true;
+
+
+  /*
+   * Geser satu posisi.
+   */
+
+  recentPreviewIndex++;
+
+
+  const translateX =
+    recentPreviewIndex *
+    step;
+
+
+  /*
+   * Smooth animation.
+   */
+
+  track.style.transition =
+    "transform 0.85s cubic-bezier(0.22, 1, 0.36, 1)";
+
+
+  track.style.transform =
+    `translate3d(-${translateX}px, 0, 0)`;
+
+
+  /*
+   * Tunggu transition selesai.
+   */
+
+  const handleTransitionEnd =
+    event => {
+
+      /*
+       * Pastikan transition berasal
+       * dari transform track.
+       */
+
+      if (
+        event.propertyName !==
+        "transform"
+      ) {
+
+        return;
+
+      }
+
+
+      track.removeEventListener(
+        "transitionend",
+        handleTransitionEnd
+      );
+
+
+      /*
+       * ====================================
+       * INFINITE LOOP POSITION
+       * ====================================
+       */
+
+      const baseLength =
+        totalOriginalPhotos;
+
+
+      /*
+       * Jika sudah masuk terlalu jauh
+       * ke set berikutnya, pindahkan
+       * kembali ke set kedua.
+       */
+
+      if (
+        recentPreviewIndex >=
+        baseLength * 2
+      ) {
+
+        recentPreviewIndex =
+          recentPreviewIndex -
+          baseLength;
+
+
+        const resetTranslateX =
+          recentPreviewIndex *
+          step;
+
+
+        /*
+         * Matikan transition sementara.
+         */
+
+        track.style.transition =
+          "none";
+
+
+        track.style.transform =
+          `translate3d(-${resetTranslateX}px, 0, 0)`;
+
+
+        /*
+         * Force browser repaint.
+         */
+
+        void track.offsetWidth;
+
+      }
+
+
+      /*
+       * Animasi selesai.
+       */
+
+      recentPreviewIsAnimating =
+        false;
+
+    };
+
+
+  track.addEventListener(
+    "transitionend",
+    handleTransitionEnd
+  );
+
+}
+
+
+/* ============================================
+   HANDLE WINDOW RESIZE
+============================================ */
+
+let recentPreviewResizeTimer =
+  null;
+
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    clearTimeout(
+      recentPreviewResizeTimer
+    );
+
+
+    recentPreviewResizeTimer =
+      setTimeout(
+        () => {
+
+          /*
+           * Recalculate posisi setelah
+           * ukuran item berubah.
+           */
+
+          setRecentPreviewPosition(
+            false
+          );
+
+        },
+        150
+      );
+
+  }
+);
+
+
+/* ============================================
    CALENDAR
 ============================================ */
 
@@ -103,6 +1053,13 @@ function renderCalendar() {
     document.getElementById(
       "calendarDays"
     );
+
+
+  if (!calendarDays) {
+
+    return;
+
+  }
 
 
   calendarDays.innerHTML = "";
@@ -129,19 +1086,37 @@ function renderCalendar() {
       {
         month: "long"
       }
-    ).format(currentDate);
+    ).format(
+      currentDate
+    );
 
 
-  document.getElementById(
-    "calendarMonth"
-  ).textContent =
-    monthName;
+  const monthElement =
+    document.getElementById(
+      "calendarMonth"
+    );
 
 
-  document.getElementById(
-    "calendarYear"
-  ).textContent =
-    year;
+  const yearElement =
+    document.getElementById(
+      "calendarYear"
+    );
+
+
+  if (monthElement) {
+
+    monthElement.textContent =
+      monthName;
+
+  }
+
+
+  if (yearElement) {
+
+    yearElement.textContent =
+      year;
+
+  }
 
 
   /*
@@ -158,14 +1133,17 @@ function renderCalendar() {
 
   /*
    * JS:
+   *
    * Sunday = 0
    *
    * Kita ingin:
+   *
    * Monday = 0
    */
 
   let startDay =
     firstDay.getDay();
+
 
   startDay =
     startDay === 0
@@ -200,8 +1178,10 @@ function renderCalendar() {
         "div"
       );
 
+
     empty.className =
       "calendar-day empty";
+
 
     calendarDays.appendChild(
       empty
@@ -257,13 +1237,8 @@ function renderCalendar() {
       );
 
 
-    /* ========================================
-       TODAY
-    ======================================== */
-
     /*
-     * Ambil tanggal hari ini
-     * berdasarkan waktu lokal perangkat.
+     * TODAY
      */
 
     const today =
@@ -278,20 +1253,9 @@ function renderCalendar() {
       );
 
 
-    /*
-     * Jika tanggal kalender sama dengan
-     * tanggal hari ini, tambahkan class "today".
-     *
-     * Contoh:
-     * 2026-08-27
-     *
-     * maka:
-     *
-     * class="calendar-day today"
-     */
-
     if (
-      dateString === todayString
+      dateString ===
+      todayString
     ) {
 
       cell.classList.add(
@@ -363,10 +1327,6 @@ function renderCalendar() {
    SELECTED DATE
 ============================================ */
 
-let selectedDate =
-  null;
-
-
 function selectDate(
   date
 ) {
@@ -388,6 +1348,13 @@ function selectDate(
     document.getElementById(
       "selectedMoment"
     );
+
+
+  if (!container) {
+
+    return;
+
+  }
 
 
   if (
@@ -421,42 +1388,82 @@ function selectDate(
   container.innerHTML = `
 
     <div class="selected-date">
+
       ${escapeHTML(
         memory.date_display
       )}
+
     </div>
 
+
     <div class="selected-location">
+
       ${escapeHTML(
         memory.location
       )}
+
     </div>
 
+
     <div class="selected-description">
+
       ${escapeHTML(
         memory.description
       )}
+
     </div>
+
 
     ${
       photo
         ? `
+
           <img
             class="selected-photo"
-            src="${photo}"
-            alt="${escapeHTML(
+            src="${escapeAttribute(
+              photo
+            )}"
+            alt="${escapeAttribute(
               memory.description
             )}"
-            onclick="openPhotoPreview(
-                '${photo}',
-                '${escapeHTML(memory.description)}'
-            )"
           >
+
         `
         : ""
     }
 
   `;
+
+
+  /*
+   * Event listener foto.
+   */
+
+  if (photo) {
+
+    const selectedPhoto =
+      container.querySelector(
+        ".selected-photo"
+      );
+
+
+    if (selectedPhoto) {
+
+      selectedPhoto.addEventListener(
+        "click",
+        () => {
+
+          openPhotoPreview(
+            photo,
+            memory.description || ""
+          );
+
+        }
+      );
+
+    }
+
+  }
 
 
   container.classList.remove(
@@ -476,6 +1483,13 @@ function renderImportantDates() {
     document.getElementById(
       "importantDates"
     );
+
+
+  if (!container) {
+
+    return;
+
+  }
 
 
   /*
@@ -501,7 +1515,10 @@ function renderImportantDates() {
    */
 
   const display =
-    important.slice(0, 8);
+    important.slice(
+      0,
+      8
+    );
 
 
   if (
@@ -514,6 +1531,14 @@ function renderImportantDates() {
     return;
 
   }
+
+
+  /*
+   * Clear container
+   */
+
+  container.innerHTML =
+    "";
 
 
   display.forEach(
@@ -535,7 +1560,9 @@ function renderImportantDates() {
           {
             month: "short"
           }
-        ).format(date);
+        ).format(
+          date
+        );
 
 
       const item =
@@ -553,11 +1580,15 @@ function renderImportantDates() {
         <div
           class="important-date-number"
         >
+
           ${day}
+
           <small>
             ${month}
           </small>
+
         </div>
+
 
         <div
           class="important-date-info"
@@ -566,25 +1597,33 @@ function renderImportantDates() {
           <div
             class="important-date-title"
           >
+
             ${escapeHTML(
               memory.description
             )}
+
           </div>
+
 
           <div
             class="important-date-location"
           >
+
             ${escapeHTML(
               memory.location
             )}
+
           </div>
 
         </div>
 
+
         <div
           class="important-date-arrow"
         >
+
           →
+
         </div>
 
       `;
@@ -599,13 +1638,19 @@ function renderImportantDates() {
           );
 
 
-          document
-            .getElementById(
+          const moments =
+            document.getElementById(
               "moments"
-            )
-            .scrollIntoView({
+            );
+
+
+          if (moments) {
+
+            moments.scrollIntoView({
               behavior: "smooth"
             });
+
+          }
 
         }
       );
@@ -654,10 +1699,18 @@ function renderSummary() {
         ).length;
 
 
-      document.getElementById(
-        categories[category]
-      ).textContent =
-        count;
+      const element =
+        document.getElementById(
+          categories[category]
+        );
+
+
+      if (element) {
+
+        element.textContent =
+          count;
+
+      }
 
     }
   );
@@ -669,6 +1722,24 @@ function renderSummary() {
    FEATURED MOMENTS
 ============================================ */
 
+/*
+ * A Few Moments
+ *
+ * Urutan:
+ *
+ * OLDEST → NEWEST
+ *
+ * Contoh:
+ *
+ * 2024 → 2025 → 2026
+ *
+ * Tujuannya agar section ini tidak
+ * menduplikasi fungsi carousel hero
+ * yang menggunakan:
+ *
+ * NEWEST → OLDEST
+ */
+
 function renderFeaturedMoments() {
 
   const container =
@@ -677,8 +1748,31 @@ function renderFeaturedMoments() {
     );
 
 
+  if (!container) {
+
+    return;
+
+  }
+
+
   /*
-   * Ambil Moments
+   * Clear container
+   */
+
+  container.innerHTML =
+    "";
+
+
+  /*
+   * ========================================
+   * AMBIL MOMENTS
+   * ========================================
+   *
+   * Berbeda dengan carousel hero,
+   * section ini menggunakan chronological
+   * ascending order.
+   *
+   * OLD → NEW
    */
 
   const momentMemories =
@@ -690,13 +1784,19 @@ function renderFeaturedMoments() {
       )
       .sort(
         (a, b) =>
-          new Date(b.date) -
-          new Date(a.date)
+          new Date(a.date) -
+          new Date(b.date)
       );
 
 
   /*
-   * 5 terbaru
+   * ========================================
+   * 5 MOMENTS PALING AWAL
+   * ========================================
+   *
+   * Karena sudah ascending,
+   * slice(0, 5) berarti mengambil
+   * 5 moment paling lama.
    */
 
   const featured =
@@ -717,6 +1817,12 @@ function renderFeaturedMoments() {
 
   }
 
+
+  /*
+   * ========================================
+   * RENDER CARD
+   * ========================================
+   */
 
   featured.forEach(
     memory => {
@@ -743,21 +1849,23 @@ function renderFeaturedMoments() {
         ${
           photo
             ? `
+
               <img
                 class="featured-image"
-                src="${photo}"
-                alt="${escapeHTML(
+                src="${escapeAttribute(
+                  photo
+                )}"
+                alt="${escapeAttribute(
                   memory.description
                 )}"
                 loading="lazy"
-                onclick="event.stopPropagation(); openPhotoPreview(
-                  '${photo}',
-                  '${escapeHTML(memory.description)}'
-                )"
+                decoding="async"
               >
+
             `
             : ""
         }
+
 
         <div
           class="featured-info"
@@ -766,31 +1874,45 @@ function renderFeaturedMoments() {
           <div
             class="featured-date"
           >
+
             ${escapeHTML(
               memory.date_display
             )}
+
           </div>
+
 
           <div
             class="featured-title"
           >
+
             ${escapeHTML(
               memory.description
             )}
+
           </div>
+
 
           <div
             class="featured-location"
           >
+
             ${escapeHTML(
               memory.location
             )}
+
           </div>
 
         </div>
 
       `;
 
+
+      /*
+       * ====================================
+       * CARD CLICK
+       * ====================================
+       */
 
       card.addEventListener(
         "click",
@@ -802,6 +1924,42 @@ function renderFeaturedMoments() {
 
         }
       );
+
+
+      /*
+       * ====================================
+       * IMAGE CLICK
+       * ====================================
+       */
+
+      if (photo) {
+
+        const image =
+          card.querySelector(
+            ".featured-image"
+          );
+
+
+        if (image) {
+
+          image.addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+
+              openPhotoPreview(
+                photo,
+                memory.description || ""
+              );
+
+            }
+          );
+
+        }
+
+      }
 
 
       container.appendChild(
@@ -818,11 +1976,17 @@ function renderFeaturedMoments() {
    MONTH NAVIGATION
 ============================================ */
 
-document
-  .getElementById(
+const previousMonthButton =
+  document.getElementById(
     "previousMonth"
-  )
-  .addEventListener(
+  );
+
+
+if (
+  previousMonthButton
+) {
+
+  previousMonthButton.addEventListener(
     "click",
     () => {
 
@@ -840,12 +2004,20 @@ document
     }
   );
 
+}
 
-document
-  .getElementById(
+
+const nextMonthButton =
+  document.getElementById(
     "nextMonth"
-  )
-  .addEventListener(
+  );
+
+
+if (
+  nextMonthButton
+) {
+
+  nextMonthButton.addEventListener(
     "click",
     () => {
 
@@ -862,6 +2034,8 @@ document
 
     }
   );
+
+}
 
 
 /* ============================================
@@ -881,6 +2055,10 @@ function getMemoriesByDate(
 }
 
 
+/* ============================================
+   FORMAT DATE
+============================================ */
+
 function formatDateISO(
   year,
   month,
@@ -894,17 +2072,27 @@ function formatDateISO(
     "-" +
 
     String(month)
-      .padStart(2, "0") +
+      .padStart(
+        2,
+        "0"
+      ) +
 
     "-" +
 
     String(day)
-      .padStart(2, "0")
+      .padStart(
+        2,
+        "0"
+      )
 
   );
 
 }
 
+
+/* ============================================
+   ESCAPE HTML
+============================================ */
 
 function escapeHTML(
   text
@@ -951,18 +2139,75 @@ function escapeHTML(
 
 
 /* ============================================
+   ESCAPE ATTRIBUTE
+============================================ */
+
+function escapeAttribute(
+  text
+) {
+
+  if (
+    text === undefined ||
+    text === null
+  ) {
+
+    return "";
+
+  }
+
+
+  return String(text)
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    );
+
+}
+
+
+/* ============================================
    BUTTONS
 ============================================ */
 
 function scrollToMoments() {
 
-  document
-    .getElementById(
+  const moments =
+    document.getElementById(
       "moments"
-    )
-    .scrollIntoView({
-      behavior: "smooth"
-    });
+    );
+
+
+  if (!moments) {
+
+    return;
+
+  }
+
+
+  moments.scrollIntoView({
+    behavior: "smooth"
+  });
 
 }
 
@@ -987,11 +2232,20 @@ function showError() {
     );
 
 
+  if (!container) {
+
+    return;
+
+  }
+
+
   container.innerHTML = `
 
     <p>
+
       Unable to load memories.
       Please check the API connection.
+
     </p>
 
   `;
@@ -1013,10 +2267,12 @@ function openPhotoPreview(
       "photoLightbox"
     );
 
+
   const image =
     document.getElementById(
       "photoLightboxImage"
     );
+
 
   const captionElement =
     document.getElementById(
@@ -1034,9 +2290,17 @@ function openPhotoPreview(
   }
 
 
+  /*
+   * Set image.
+   */
+
   image.src =
     imageUrl;
 
+
+  /*
+   * Set caption.
+   */
 
   if (
     captionElement
@@ -1048,13 +2312,17 @@ function openPhotoPreview(
   }
 
 
+  /*
+   * Open modal.
+   */
+
   modal.classList.add(
     "active"
   );
 
 
   /*
-   * Prevent background page scrolling
+   * Prevent background scrolling.
    */
 
   document.body.style.overflow =
@@ -1063,12 +2331,17 @@ function openPhotoPreview(
 }
 
 
+/* ============================================
+   CLOSE PHOTO LIGHTBOX
+============================================ */
+
 function closePhotoPreview() {
 
   const modal =
     document.getElementById(
       "photoLightbox"
     );
+
 
   const image =
     document.getElementById(
@@ -1085,17 +2358,25 @@ function closePhotoPreview() {
   }
 
 
+  /*
+   * Close modal.
+   */
+
   modal.classList.remove(
     "active"
   );
 
+
+  /*
+   * Restore scrolling.
+   */
 
   document.body.style.overflow =
     "";
 
 
   /*
-   * Clear image after closing
+   * Clear image after transition.
    */
 
   setTimeout(
@@ -1117,9 +2398,9 @@ function closePhotoPreview() {
 }
 
 
-/*
- * Close dengan tombol ESC
- */
+/* ============================================
+   CLOSE LIGHTBOX WITH ESC
+============================================ */
 
 document.addEventListener(
   "keydown",
@@ -1131,6 +2412,37 @@ document.addEventListener(
     ) {
 
       closePhotoPreview();
+
+    }
+
+  }
+);
+
+
+/* ============================================
+   STOP CAROUSEL WHEN PAGE IS HIDDEN
+============================================ */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (
+      document.hidden
+    ) {
+
+      stopRecentMomentsAnimation();
+
+    } else {
+
+      if (
+        recentPreviewPhotos.length >
+        recentPreviewVisibleCount
+      ) {
+
+        startRecentMomentsAnimation();
+
+      }
 
     }
 

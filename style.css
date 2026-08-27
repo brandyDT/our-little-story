@@ -60,7 +60,11 @@ body {
 
   background: var(--background);
   color: var(--text);
-  font-family: "DM Sans", sans-serif;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
   line-height: 1.6;
 
 }
@@ -71,18 +75,6 @@ button {
   font-family: inherit;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -99,7 +91,6 @@ button {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
@@ -111,7 +102,9 @@ button {
 
 .hero-content {
 
-  max-width: 700px;
+  width: 100%;
+
+  max-width: 760px;
 
 }
 
@@ -210,13 +203,432 @@ button {
 
 
 
+/* ============================================
+   HERO SUMMARY
+============================================ */
+
+.hero-summary {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: stretch;
+
+  gap: 12px;
+
+  margin:
+    30px 0 35px;
+
+}
+
+
+.hero-summary-item {
+
+  min-width: 115px;
+
+  padding:
+    18px 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-decoration: none;
+
+  background:
+    rgba(255, 255, 255, 0.45);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.7);
+
+  border-radius: 18px;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+
+}
+
+
+.hero-summary-item:hover {
+
+  transform:
+    translateY(-5px);
+
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 12px 30px
+    rgba(70, 70, 90, 0.10);
+
+}
+
+
+.hero-summary-item .summary-number {
+
+  display: block;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 36px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  margin-bottom: 7px;
+
+}
+
+
+.hero-summary-item .summary-label {
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color:
+    #34343d;
+
+}
+
+
+.hero-summary-item .summary-description {
+
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color:
+    #8a8a96;
+
+}
 
 
 
 
 
+/* ============================================
+   BRANDON
+============================================ */
+
+.hero-summary-item[data-category="brandon"]
+.summary-number {
+
+  color:
+    #5b8fc9;
+
+}
 
 
+
+
+
+/* ============================================
+   NURMA
+============================================ */
+
+.hero-summary-item[data-category="nurma"]
+.summary-number {
+
+  color:
+    #e85d8c;
+
+}
+
+
+
+
+
+/* ============================================
+   MOMENTS
+============================================ */
+
+.hero-summary-item[data-category="moments"]
+.summary-number {
+
+  color:
+    #d36a9d;
+
+}
+
+
+
+
+
+/* ============================================
+   RECENT MOMENTS PREVIEW
+============================================ */
+
+/*
+   A FEW MOMENTS
+
+   Urutan:
+   OLDEST → NEWEST
+
+   Berbeda dengan Featured Moments
+   yang tetap:
+   NEWEST → OLDEST
+
+   Desktop:
+   - Bisa horizontal scroll
+   - Scrollbar disembunyikan
+   - Tidak menggunakan carousel animation
+
+   Mobile:
+   - Tetap bisa swipe ke kanan
+   - Scroll horizontal native
+*/
+
+
+.recent-moments-preview {
+
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin:
+    32px auto 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  position: relative;
+
+  /*
+   * Native horizontal scrolling.
+   */
+
+  -webkit-overflow-scrolling: touch;
+
+  /*
+   * Scrollbar disembunyikan
+   * tetapi scrolling tetap aktif.
+   */
+
+  scrollbar-width: none;
+
+  /*
+   * Optional smooth scrolling
+   * saat browser melakukan scroll.
+   */
+
+  scroll-behavior: smooth;
+
+}
+
+
+/*
+ * Chrome / Safari / Edge
+ */
+
+.recent-moments-preview::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+
+
+
+
+/* ============================================
+   RECENT PREVIEW WRAPPER
+============================================ */
+
+.recent-preview-wrapper {
+
+  width: max-content;
+
+  min-width: 100%;
+
+  overflow: visible;
+
+}
+
+
+
+
+
+/* ============================================
+   RECENT PREVIEW TRACK
+============================================ */
+
+.recent-preview-track {
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content: flex-start;
+
+  flex-wrap: nowrap;
+
+  width: max-content;
+
+  max-width: none;
+
+  gap: 14px;
+
+  /*
+   * Jangan menggunakan:
+   *
+   * justify-content: center;
+   *
+   * Track harus dimulai dari kiri
+   * agar urutan oldest → newest
+   * dapat dibaca secara natural.
+   */
+
+  will-change: transform;
+
+  transform:
+    translate3d(0, 0, 0);
+
+}
+
+
+
+
+
+/* ============================================
+   RECENT PREVIEW ITEM
+============================================ */
+
+.recent-preview-item {
+
+  position: relative;
+
+  flex:
+    0 0 165px;
+
+  width: 165px;
+
+  min-width: 165px;
+
+  height: 210px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.45);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 12px 35px
+    rgba(70, 70, 90, 0.10);
+
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0);
+
+}
+
+
+
+
+
+/* ============================================
+   RECENT PREVIEW IMAGE
+============================================ */
+
+.recent-preview-item img {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  transition:
+    transform 0.8s ease;
+
+}
+
+
+
+
+
+/* ============================================
+   PHOTO HOVER
+============================================ */
+
+.recent-preview-item:hover img {
+
+  transform:
+    scale(1.04);
+
+}
+
+
+
+
+
+/* ============================================
+   REMOVE ENTER / EXIT EFFECT
+============================================ */
+
+.recent-preview-item.exiting {
+
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0);
+
+}
+
+
+.recent-preview-item.entering {
+
+  animation: none;
+
+  opacity: 1;
+
+  transform:
+    translate3d(0, 0, 0);
+
+}
+
+
+
+
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+.recent-moments-preview:empty {
+
+  display: none;
+
+}
 
 
 
@@ -290,18 +702,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    CALENDAR
 ============================================ */
@@ -325,7 +725,8 @@ section {
     rgba(255, 255, 255, 0.35);
 
   border:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   padding:
     30px 20px;
@@ -444,18 +845,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    MEMORY DATE
 ============================================ */
@@ -490,25 +879,14 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    TODAY
 ============================================ */
 
 .calendar-day.today {
 
-  color: var(--pink-hard);
+  color:
+    var(--pink-hard);
 
   font-weight: 700;
 
@@ -551,18 +929,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    TODAY + MEMORY
 ============================================ */
@@ -578,25 +944,14 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    SELECTED DATE
 ============================================ */
 
 .calendar-day.selected {
 
-  color: var(--white);
+  color:
+    var(--white);
 
   font-weight: 600;
 
@@ -635,25 +990,14 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    TODAY + SELECTED
 ============================================ */
 
 .calendar-day.today.selected {
 
-  color: var(--white);
+  color:
+    var(--white);
 
 }
 
@@ -688,18 +1032,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    SELECTED MOMENT
 ============================================ */
@@ -715,7 +1047,8 @@ section {
     25px;
 
   border-top:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   text-align: center;
 
@@ -785,18 +1118,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    IMPORTANT DATES
 ============================================ */
@@ -830,7 +1151,8 @@ section {
     22px 0;
 
   border-bottom:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
   cursor: pointer;
 
@@ -840,7 +1162,8 @@ section {
 .important-date:first-child {
 
   border-top:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
 }
 
@@ -891,18 +1214,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    SUMMARY
 ============================================ */
@@ -938,7 +1249,8 @@ section {
     20px;
 
   border-right:
-    1px solid var(--border);
+    1px solid
+    var(--border);
 
 }
 
@@ -989,18 +1301,6 @@ section {
   color: var(--muted);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1144,18 +1444,6 @@ section {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    FOOTER
 ============================================ */
@@ -1194,6 +1482,9 @@ footer span {
 }
 
 
+
+
+
 /* ============================================
    FOOTER SUBTITLE
 ============================================ */
@@ -1205,6 +1496,9 @@ footer span {
 }
 
 
+
+
+
 /* ============================================
    FOOTER SITE CREDIT
 ============================================ */
@@ -1214,6 +1508,9 @@ footer span {
   display: block;
 
 }
+
+
+
 
 
 /* ============================================
@@ -1249,6 +1546,16 @@ footer span {
 }
 
 
+.site-watermark:hover {
+
+  opacity: 0.8;
+
+}
+
+
+
+
+
 /* ============================================
    HEART ICON
 ============================================ */
@@ -1268,25 +1575,6 @@ footer span {
   vertical-align: middle;
 
 }
-
-
-.site-watermark:hover {
-
-  opacity: 0.8;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1317,904 +1605,6 @@ footer span {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   DESKTOP
-============================================ */
-
-@media (min-width: 768px) {
-
-  section {
-
-    padding:
-      140px 40px;
-
-  }
-
-
-  .hero h1 {
-
-    letter-spacing: -5px;
-
-  }
-
-
-  .calendar-container {
-
-    padding:
-      40px;
-
-  }
-
-
-  .calendar-day {
-
-    height: 65px;
-
-  }
-
-
-  .calendar-day.selected::before {
-
-    width: 40px;
-
-    height: 40px;
-
-  }
-
-
-  /* TODAY DESKTOP */
-
-  .calendar-day.today::before {
-
-    width: 40px;
-
-    height: 40px;
-
-  }
-
-
-  .calendar-day.today.selected::before {
-
-    width: 42px;
-
-    height: 42px;
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   MOBILE
-============================================ */
-
-@media (max-width: 600px) {
-
-  .summary-grid {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .summary-item {
-
-    border-right: none;
-
-    border-bottom:
-      1px solid var(--border);
-
-    padding:
-      30px;
-
-  }
-
-
-  .summary-item:last-child {
-
-    border-bottom: none;
-
-  }
-
-
-  .important-date {
-
-    gap: 15px;
-
-  }
-
-
-  .important-date-number {
-
-    min-width: 45px;
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   MOBILE UI POLISH
-============================================ */
-
-@media (max-width: 600px) {
-
-  /* =========================================
-     GENERAL
-  ========================================== */
-
-  body {
-
-    overflow-x: hidden;
-
-  }
-
-
-  section {
-
-    padding:
-      80px 20px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     HERO
-  ========================================== */
-
-  .hero {
-
-    min-height: 100svh;
-
-    padding:
-      30px 24px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-  }
-
-
-  .hero-content {
-
-    width: 100%;
-
-    max-width: 360px;
-
-  }
-
-
-  .hero h1 {
-
-    font-size:
-      clamp(
-        64px,
-        20vw,
-        92px
-      );
-
-    line-height: 0.82;
-
-    letter-spacing: -3px;
-
-    margin-bottom: 32px;
-
-  }
-
-
-  .hero-description {
-
-    font-size: 13px;
-
-    line-height: 1.7;
-
-    margin-bottom: 38px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     SECTION HEADING
-  ========================================== */
-
-  .section-heading {
-
-    margin-bottom: 36px;
-
-  }
-
-
-  .section-heading .eyebrow {
-
-    margin-bottom: 14px;
-
-  }
-
-
-  .section-heading h2 {
-
-    font-size: 46px;
-
-    line-height: 0.95;
-
-    letter-spacing: -1px;
-
-  }
-
-
-  .section-heading p:not(.eyebrow) {
-
-    font-size: 12px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     CALENDAR
-  ========================================== */
-
-  .calendar-section {
-
-    padding-left: 16px;
-
-    padding-right: 16px;
-
-  }
-
-
-  .calendar-container {
-
-    width: 100%;
-
-    padding:
-      24px 12px;
-
-    border-radius: 2px;
-
-  }
-
-
-  .calendar-header {
-
-    margin-bottom: 24px;
-
-  }
-
-
-  .calendar-header h3 {
-
-    font-size: 28px;
-
-  }
-
-
-  .calendar-header span {
-
-    font-size: 9px;
-
-  }
-
-
-  .calendar-nav {
-
-    width: 40px;
-
-    height: 40px;
-
-    padding: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-  }
-
-
-  .calendar-weekdays span {
-
-    font-size: 7px;
-
-  }
-
-
-  .calendar-day {
-
-    height: 46px;
-
-    font-size: 11px;
-
-  }
-
-
-  .calendar-day.selected::before {
-
-    width: 32px;
-
-    height: 32px;
-
-  }
-
-
-  .calendar-day.has-memory::after {
-
-    bottom: 4px;
-
-    width: 5px;
-
-    height: 5px;
-
-  }
-
-
-  /* TODAY MOBILE */
-
-  .calendar-day.today::before {
-
-    width: 32px;
-
-    height: 32px;
-
-  }
-
-
-  .calendar-day.today.selected::before {
-
-    width: 34px;
-
-    height: 34px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     SELECTED MOMENT
-  ========================================== */
-
-  .selected-moment {
-
-    padding:
-      24px 10px;
-
-    margin-top: 20px;
-
-  }
-
-
-  .selected-location {
-
-    font-size: 27px;
-
-  }
-
-
-  .selected-description {
-
-    font-size: 12px;
-
-    line-height: 1.6;
-
-  }
-
-
-  .selected-photo {
-
-    max-height: 420px;
-
-    object-fit: cover;
-
-    margin-top: 18px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     IMPORTANT DATES
-  ========================================== */
-
-  .important-section {
-
-    padding:
-      80px 20px;
-
-  }
-
-
-  .important-date {
-
-    gap: 14px;
-
-    padding:
-      18px 0;
-
-  }
-
-
-  .important-date-number {
-
-    min-width: 48px;
-
-    font-size: 27px;
-
-  }
-
-
-  .important-date-number small {
-
-    display: block;
-
-    font-family:
-      "DM Sans",
-      sans-serif;
-
-    font-size: 8px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-
-    color: var(--muted);
-
-  }
-
-
-  .important-date-title {
-
-    font-size: 12px;
-
-    line-height: 1.45;
-
-  }
-
-
-  .important-date-location {
-
-    font-size: 10px;
-
-    margin-top: 3px;
-
-  }
-
-
-  .important-date-arrow {
-
-    font-size: 13px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     SUMMARY
-  ========================================== */
-
-  .summary-section {
-
-    padding:
-      80px 20px;
-
-  }
-
-
-  .summary-grid {
-
-    display: grid;
-
-    grid-template-columns:
-      repeat(3, 1fr);
-
-    gap: 0;
-
-    width: 100%;
-
-  }
-
-
-  .summary-item {
-
-    padding:
-      10px 5px;
-
-    border-right:
-      1px solid var(--border);
-
-    border-bottom: none;
-
-  }
-
-
-  .summary-item:last-child {
-
-    border-right: none;
-
-  }
-
-
-  .summary-number {
-
-    font-size: 44px;
-
-  }
-
-
-  .summary-label {
-
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
-
-    margin-top: 8px;
-
-  }
-
-
-  .summary-description {
-
-    font-size: 9px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     FEATURED MOMENTS
-  ========================================== */
-
-  .featured-section {
-
-    padding:
-      80px 0;
-
-  }
-
-
-  .featured-section .section-heading {
-
-    padding:
-      0 20px;
-
-  }
-
-
-  .featured-moments {
-
-    padding:
-      0 20px 20px;
-
-    gap: 14px;
-
-    scroll-snap-type:
-      x mandatory;
-
-  }
-
-
-  .featured-card {
-
-    min-width:
-      82vw;
-
-    max-width:
-      82vw;
-
-    scroll-snap-align:
-      start;
-
-  }
-
-
-  .featured-image {
-
-    aspect-ratio:
-      4 / 5;
-
-    border-radius: 2px;
-
-  }
-
-
-  .featured-info {
-
-    padding-top: 12px;
-
-  }
-
-
-  .featured-date {
-
-    font-size: 8px;
-
-  }
-
-
-  .featured-title {
-
-    font-size: 24px;
-
-  }
-
-
-  .featured-location {
-
-    font-size: 9px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     VIEW ALL
-  ========================================== */
-
-  .view-all-container {
-
-    margin-top: 30px;
-
-    padding:
-      0 20px;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  /* =========================================
-     FOOTER
-  ========================================== */
-
-  footer {
-
-    padding:
-      50px 20px 25px;
-
-  }
-
-
-  footer p {
-
-    font-size: 22px;
-
-  }
-
-
-  footer span {
-
-    font-size: 9px;
-
-  }
-
-
-  /* =========================================
-     FOOTER WATERMARK MOBILE
-  ========================================== */
-
-  .site-watermark {
-
-    display: block;
-
-    margin-top: 24px;
-
-    font-size: 7px;
-
-    letter-spacing: 1px;
-
-    color:
-      rgba(90, 86, 94, 0.62);
-
-    white-space: nowrap;
-
-  }
-
-
-  .site-watermark .heart-icon {
-
-    display: inline;
-
-    margin: 0 4px;
-
-    color: var(--pink-hard);
-
-    font-size: 8px;
-
-    letter-spacing: 0;
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2380,18 +1770,6 @@ footer span {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
    PHOTO INTERACTION
 ============================================ */
@@ -2416,23 +1794,954 @@ footer span {
 
 
 
+/* ============================================
+   DESKTOP
+============================================ */
+
+@media (min-width: 768px) {
+
+  section {
+
+    padding:
+      140px 40px;
+
+  }
+
+
+  .hero h1 {
+
+    letter-spacing: -5px;
+
+  }
+
+
+  .calendar-container {
+
+    padding:
+      40px;
+
+  }
+
+
+  .calendar-day {
+
+    height: 65px;
+
+  }
+
+
+  .calendar-day.selected::before {
+
+    width: 40px;
+
+    height: 40px;
+
+  }
+
+
+  .calendar-day.today::before {
+
+    width: 40px;
+
+    height: 40px;
+
+  }
+
+
+  .calendar-day.today.selected::before {
+
+    width: 42px;
+
+    height: 42px;
+
+  }
 
 
 
 
 
+  /* =========================================
+     DESKTOP A FEW MOMENTS
+  ========================================== */
+
+  /*
+   * Pada desktop sekarang section ini
+   * TIDAK lagi dikunci pada 3 foto.
+   *
+   * User dapat melakukan:
+   *
+   * ← scroll kiri
+   * → scroll kanan
+   *
+   * menggunakan mouse wheel / trackpad /
+   * shift + wheel / scrollbar jika diperlukan.
+   */
+
+  .recent-moments-preview {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin-top: 36px;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    padding:
+      0 0 16px;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+
+    scroll-behavior: smooth;
+
+  }
 
 
+  .recent-moments-preview::-webkit-scrollbar {
+
+    display: none;
+
+  }
+
+
+  .recent-preview-wrapper {
+
+    width: max-content;
+
+    min-width: 100%;
+
+  }
+
+
+  .recent-preview-track {
+
+    gap: 16px;
+
+    width: max-content;
+
+    max-width: none;
+
+  }
+
+
+  .recent-preview-item {
+
+    flex:
+      0 0 180px;
+
+    width: 180px;
+
+    min-width: 180px;
+
+    height: 230px;
+
+    border-radius: 16px;
+
+  }
+
+}
 
 
 
 
 
 /* ============================================
-   MOBILE PHOTO LIGHTBOX
+   MOBILE
 ============================================ */
 
 @media (max-width: 600px) {
+
+  body {
+
+    overflow-x: hidden;
+
+  }
+
+
+  section {
+
+    padding:
+      80px 20px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     HERO
+  ========================================== */
+
+  .hero {
+
+    min-height: 100svh;
+
+    padding:
+      30px 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+  }
+
+
+  .hero-content {
+
+    width: 100%;
+
+    max-width: 380px;
+
+  }
+
+
+  .hero h1 {
+
+    font-size:
+      clamp(
+        64px,
+        20vw,
+        92px
+      );
+
+    line-height: 0.82;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 32px;
+
+  }
+
+
+  .hero-description {
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 38px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     HERO SUMMARY
+  ========================================== */
+
+  .hero-summary {
+
+    width: 100%;
+
+    gap: 8px;
+
+    margin:
+      25px 0 30px;
+
+  }
+
+
+  .hero-summary-item {
+
+    min-width: 0;
+
+    flex: 1;
+
+    padding:
+      15px 8px;
+
+    border-radius: 15px;
+
+  }
+
+
+  .hero-summary-item .summary-number {
+
+    font-size: 30px;
+
+  }
+
+
+  .hero-summary-item .summary-label {
+
+    font-size: 11px;
+
+  }
+
+
+  .hero-summary-item .summary-description {
+
+    font-size: 9px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     RECENT PHOTO PREVIEW MOBILE
+  ========================================== */
+
+  /*
+   * MOBILE:
+   *
+   * Tetap horizontal scroll.
+   *
+   * 3 foto pertama terlihat.
+   *
+   * Foto berikutnya dapat di-swipe
+   * ke kanan secara native.
+   *
+   * Urutan:
+   *
+   * OLDEST → NEWEST
+   */
+
+  .recent-moments-preview {
+
+    width: 100%;
+
+    max-width: 100%;
+
+    margin-top: 28px;
+
+    margin-left: 0;
+
+    margin-right: 0;
+
+    padding:
+      0 0 10px;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+    position: relative;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+
+    scroll-behavior: smooth;
+
+  }
+
+
+  .recent-moments-preview::-webkit-scrollbar {
+
+    display: none;
+
+  }
+
+
+  .recent-preview-wrapper {
+
+    width: max-content;
+
+    min-width: 100%;
+
+  }
+
+
+  .recent-preview-track {
+
+    display: flex;
+
+    flex-wrap: nowrap;
+
+    justify-content: flex-start;
+
+    align-items: stretch;
+
+    width: max-content;
+
+    max-width: none;
+
+    gap: 10px;
+
+    transform:
+      translate3d(0, 0, 0);
+
+    will-change: transform;
+
+  }
+
+
+  .recent-preview-item {
+
+    flex:
+      0 0 108px;
+
+    width: 108px;
+
+    min-width: 108px;
+
+    height: 140px;
+
+    border-radius: 12px;
+
+    opacity: 1;
+
+    transform:
+      translate3d(0, 0, 0);
+
+  }
+
+
+  .recent-preview-item img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+  }
+
+
+
+
+
+  /* =========================================
+     SECTION HEADING
+  ========================================== */
+
+  .section-heading {
+
+    margin-bottom: 36px;
+
+  }
+
+
+  .section-heading .eyebrow {
+
+    margin-bottom: 14px;
+
+  }
+
+
+  .section-heading h2 {
+
+    font-size: 46px;
+
+    line-height: 0.95;
+
+    letter-spacing: -1px;
+
+  }
+
+
+  .section-heading p:not(.eyebrow) {
+
+    font-size: 12px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     CALENDAR
+  ========================================== */
+
+  .calendar-section {
+
+    padding-left: 16px;
+
+    padding-right: 16px;
+
+  }
+
+
+  .calendar-container {
+
+    width: 100%;
+
+    padding:
+      24px 12px;
+
+    border-radius: 2px;
+
+  }
+
+
+  .calendar-header {
+
+    margin-bottom: 24px;
+
+  }
+
+
+  .calendar-header h3 {
+
+    font-size: 28px;
+
+  }
+
+
+  .calendar-header span {
+
+    font-size: 9px;
+
+  }
+
+
+  .calendar-nav {
+
+    width: 40px;
+
+    height: 40px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+  }
+
+
+  .calendar-weekdays span {
+
+    font-size: 7px;
+
+  }
+
+
+  .calendar-day {
+
+    height: 46px;
+
+    font-size: 11px;
+
+  }
+
+
+  .calendar-day.selected::before {
+
+    width: 32px;
+
+    height: 32px;
+
+  }
+
+
+  .calendar-day.has-memory::after {
+
+    bottom: 4px;
+
+    width: 5px;
+
+    height: 5px;
+
+  }
+
+
+  .calendar-day.today::before {
+
+    width: 32px;
+
+    height: 32px;
+
+  }
+
+
+  .calendar-day.today.selected::before {
+
+    width: 34px;
+
+    height: 34px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     SELECTED MOMENT
+  ========================================== */
+
+  .selected-moment {
+
+    padding:
+      24px 10px;
+
+    margin-top: 20px;
+
+  }
+
+
+  .selected-location {
+
+    font-size: 27px;
+
+  }
+
+
+  .selected-description {
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+  }
+
+
+  .selected-photo {
+
+    max-height: 420px;
+
+    object-fit: cover;
+
+    margin-top: 18px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     IMPORTANT DATES
+  ========================================== */
+
+  .important-section {
+
+    padding:
+      80px 20px;
+
+  }
+
+
+  .important-date {
+
+    gap: 14px;
+
+    padding:
+      18px 0;
+
+  }
+
+
+  .important-date-number {
+
+    min-width: 48px;
+
+    font-size: 27px;
+
+  }
+
+
+  .important-date-number small {
+
+    display: block;
+
+    font-family:
+      "DM Sans",
+      sans-serif;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: var(--muted);
+
+  }
+
+
+  .important-date-title {
+
+    font-size: 12px;
+
+    line-height: 1.45;
+
+  }
+
+
+  .important-date-location {
+
+    font-size: 10px;
+
+    margin-top: 3px;
+
+  }
+
+
+  .important-date-arrow {
+
+    font-size: 13px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     SUMMARY
+  ========================================== */
+
+  .summary-section {
+
+    padding:
+      80px 20px;
+
+  }
+
+
+  .summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+    gap: 0;
+
+    width: 100%;
+
+  }
+
+
+  .summary-item {
+
+    padding:
+      10px 5px;
+
+    border-right:
+      1px solid
+      var(--border);
+
+    border-bottom: none;
+
+  }
+
+
+  .summary-item:last-child {
+
+    border-right: none;
+
+  }
+
+
+  .summary-number {
+
+    font-size: 44px;
+
+  }
+
+
+  .summary-label {
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
+
+    margin-top: 8px;
+
+  }
+
+
+  .summary-description {
+
+    font-size: 9px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     FEATURED MOMENTS
+  ========================================== */
+
+  .featured-section {
+
+    padding:
+      80px 0;
+
+  }
+
+
+  .featured-section .section-heading {
+
+    padding:
+      0 20px;
+
+  }
+
+
+  .featured-moments {
+
+    padding:
+      0 20px 20px;
+
+    gap: 14px;
+
+    scroll-snap-type:
+      x mandatory;
+
+  }
+
+
+  .featured-card {
+
+    min-width:
+      82vw;
+
+    max-width:
+      82vw;
+
+    scroll-snap-align:
+      start;
+
+  }
+
+
+  .featured-image {
+
+    aspect-ratio:
+      4 / 5;
+
+    border-radius: 2px;
+
+  }
+
+
+  .featured-info {
+
+    padding-top: 12px;
+
+  }
+
+
+  .featured-date {
+
+    font-size: 8px;
+
+  }
+
+
+  .featured-title {
+
+    font-size: 24px;
+
+  }
+
+
+  .featured-location {
+
+    font-size: 9px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     VIEW ALL
+  ========================================== */
+
+  .view-all-container {
+
+    margin-top: 30px;
+
+    padding:
+      0 20px;
+
+  }
+
+
+
+
+
+  /* =========================================
+     FOOTER
+  ========================================== */
+
+  footer {
+
+    padding:
+      50px 20px 25px;
+
+  }
+
+
+  footer p {
+
+    font-size: 22px;
+
+  }
+
+
+  footer span {
+
+    font-size: 9px;
+
+  }
+
+
+  .site-watermark {
+
+    display: block;
+
+    margin-top: 24px;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    color:
+      rgba(90, 86, 94, 0.62);
+
+    white-space: nowrap;
+
+  }
+
+
+  .site-watermark .heart-icon {
+
+    display: inline;
+
+    margin: 0 4px;
+
+    color: var(--pink-hard);
+
+    font-size: 8px;
+
+    letter-spacing: 0;
+
+  }
+
+
+
+
+
+  /* =========================================
+     MOBILE LIGHTBOX
+  ========================================== */
 
   .photo-lightbox {
 
@@ -2483,279 +2792,46 @@ footer span {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* ============================================
-   HERO SUMMARY
+   REDUCED MOTION
 ============================================ */
 
-.hero-summary {
+@media (prefers-reduced-motion: reduce) {
 
-  display: flex;
+  html {
 
-  justify-content: center;
+    scroll-behavior: auto;
 
-  align-items: stretch;
+  }
 
-  gap: 12px;
 
-  margin:
-    30px 0 35px;
+  .recent-preview-item,
+  .recent-preview-item img {
 
-}
+    transition: none;
 
+    animation: none;
 
-.hero-summary-item {
+  }
 
-  min-width: 115px;
 
-  padding:
-    18px 14px;
+  .recent-preview-track {
 
-  display: flex;
+    transition: none !important;
 
-  flex-direction: column;
+  }
 
-  align-items: center;
 
-  justify-content: center;
+  .recent-moments-preview {
 
-  text-decoration: none;
-
-  background:
-    rgba(255, 255, 255, 0.45);
-
-  border:
-    1px solid
-    rgba(255, 255, 255, 0.7);
-
-  border-radius: 18px;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-
-}
-
-
-.hero-summary-item:hover {
-
-  transform:
-    translateY(-5px);
-
-  background:
-    rgba(255, 255, 255, 0.75);
-
-  box-shadow:
-    0 12px 30px
-    rgba(70, 70, 90, 0.10);
-
-}
-
-
-.hero-summary-item .summary-number {
-
-  display: block;
-
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-
-  font-size: 36px;
-
-  font-weight: 600;
-
-  line-height: 1;
-
-  margin-bottom: 7px;
-
-}
-
-
-.hero-summary-item .summary-label {
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  color:
-    #34343d;
-
-}
-
-
-.hero-summary-item .summary-description {
-
-  margin-top: 3px;
-
-  font-size: 11px;
-
-  color:
-    #8a8a96;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   BRANDON
-============================================ */
-
-.hero-summary-item[data-category="brandon"]
-.summary-number {
-
-  color:
-    #5b8fc9;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   NURMA
-============================================ */
-
-.hero-summary-item[data-category="nurma"]
-.summary-number {
-
-  color:
-    #e85d8c;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   MOMENTS
-============================================ */
-
-.hero-summary-item[data-category="moments"]
-.summary-number {
-
-  color:
-    #d36a9d;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ============================================
-   HERO SUMMARY MOBILE
-============================================ */
-
-@media (max-width: 600px) {
-
-  .hero-summary {
-
-    width: 100%;
-
-    gap: 8px;
-
-    margin:
-      25px 0 30px;
+    scroll-behavior: auto;
 
   }
 
 
   .hero-summary-item {
 
-    min-width: 0;
-
-    flex: 1;
-
-    padding:
-      15px 8px;
-
-    border-radius: 15px;
-
-  }
-
-
-  .hero-summary-item .summary-number {
-
-    font-size: 30px;
-
-  }
-
-
-  .hero-summary-item .summary-label {
-
-    font-size: 11px;
-
-  }
-
-
-  .hero-summary-item .summary-description {
-
-    font-size: 9px;
+    transition: none;
 
   }
 
