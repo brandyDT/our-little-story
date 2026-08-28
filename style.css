@@ -8,56 +8,52 @@
      BACKGROUND
   ========================= */
 
-  --background: #FFF3F8;
-  --surface: #EFF9FF;
-
+  --background: #fff3f8;
+  --surface: #eff9ff;
 
   /* =========================
      PRIMARY COLORS
   ========================= */
 
-  --pink-soft: #FFF3F8;
-  --pink-hard: #E85D91;
-
+  --pink-soft: #fff3f8;
+  --pink-hard: #e85d91;
 
   /* =========================
      SECONDARY COLORS
   ========================= */
 
-  --blue-soft: #EFF9FF;
-  --blue-hard: #3FA9D8;
-
+  --blue-soft: #eff9ff;
+  --blue-hard: #3fa9d8;
 
   /* =========================
      NEUTRAL
   ========================= */
 
-  --text: #34343A;
-  --muted: #8B8790;
-  --border: #EADDE4;
-  --white: #FFFFFF;
+  --text: #34343a;
+  --muted: #8b8790;
+  --border: #eadde4;
+  --white: #ffffff;
 
 }
 
 
-* {
+/* ============================================
+   RESET
+============================================ */
 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 
 html {
-
   scroll-behavior: smooth;
-
 }
 
 
 body {
-
   background: var(--background);
   color: var(--text);
 
@@ -66,18 +62,12 @@ body {
     sans-serif;
 
   line-height: 1.6;
-
 }
 
 
 button {
-
   font-family: inherit;
-
 }
-
-
-
 
 
 /* ============================================
@@ -91,6 +81,7 @@ button {
   display: flex;
 
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
@@ -161,6 +152,10 @@ button {
 }
 
 
+/* ============================================
+   EXPLORE BUTTON
+============================================ */
+
 .explore-button {
 
   background: none;
@@ -198,9 +193,6 @@ button {
     translateY(4px);
 
 }
-
-
-
 
 
 /* ============================================
@@ -298,8 +290,7 @@ button {
 
   font-weight: 600;
 
-  color:
-    #34343d;
+  color: #34343d;
 
 }
 
@@ -310,13 +301,9 @@ button {
 
   font-size: 11px;
 
-  color:
-    #8a8a96;
+  color: #8a8a96;
 
 }
-
-
-
 
 
 /* ============================================
@@ -326,13 +313,9 @@ button {
 .hero-summary-item[data-category="brandon"]
 .summary-number {
 
-  color:
-    #5b8fc9;
+  color: #5b8fc9;
 
 }
-
-
-
 
 
 /* ============================================
@@ -342,13 +325,9 @@ button {
 .hero-summary-item[data-category="nurma"]
 .summary-number {
 
-  color:
-    #e85d8c;
+  color: #e85d8c;
 
 }
-
-
-
 
 
 /* ============================================
@@ -358,39 +337,14 @@ button {
 .hero-summary-item[data-category="moments"]
 .summary-number {
 
-  color:
-    #d36a9d;
+  color: #d36a9d;
 
 }
-
-
-
 
 
 /* ============================================
    RECENT MOMENTS PREVIEW
 ============================================ */
-
-/*
-   A FEW MOMENTS
-
-   Urutan:
-   OLDEST → NEWEST
-
-   Berbeda dengan Featured Moments
-   yang tetap:
-   NEWEST → OLDEST
-
-   Desktop:
-   - Bisa horizontal scroll
-   - Scrollbar disembunyikan
-   - Tidak menggunakan carousel animation
-
-   Mobile:
-   - Tetap bisa swipe ke kanan
-   - Scroll horizontal native
-*/
-
 
 .recent-moments-preview {
 
@@ -402,45 +356,25 @@ button {
     32px auto 0;
 
   overflow-x: auto;
+
   overflow-y: hidden;
 
   position: relative;
 
-  /*
-   * Native horizontal scrolling.
-   */
-
   -webkit-overflow-scrolling: touch;
 
-  /*
-   * Scrollbar disembunyikan
-   * tetapi scrolling tetap aktif.
-   */
-
   scrollbar-width: none;
-
-  /*
-   * Optional smooth scrolling
-   * saat browser melakukan scroll.
-   */
 
   scroll-behavior: smooth;
 
 }
 
 
-/*
- * Chrome / Safari / Edge
- */
-
 .recent-moments-preview::-webkit-scrollbar {
 
   display: none;
 
 }
-
-
-
 
 
 /* ============================================
@@ -456,9 +390,6 @@ button {
   overflow: visible;
 
 }
-
-
-
 
 
 /* ============================================
@@ -481,25 +412,12 @@ button {
 
   gap: 14px;
 
-  /*
-   * Jangan menggunakan:
-   *
-   * justify-content: center;
-   *
-   * Track harus dimulai dari kiri
-   * agar urutan oldest → newest
-   * dapat dibaca secara natural.
-   */
-
   will-change: transform;
 
   transform:
     translate3d(0, 0, 0);
 
 }
-
-
-
 
 
 /* ============================================
@@ -542,9 +460,6 @@ button {
 }
 
 
-
-
-
 /* ============================================
    RECENT PREVIEW IMAGE
 ============================================ */
@@ -573,9 +488,6 @@ button {
 }
 
 
-
-
-
 /* ============================================
    PHOTO HOVER
 ============================================ */
@@ -586,9 +498,6 @@ button {
     scale(1.04);
 
 }
-
-
-
 
 
 /* ============================================
@@ -617,9 +526,6 @@ button {
 }
 
 
-
-
-
 /* ============================================
    EMPTY STATE
 ============================================ */
@@ -629,9 +535,6 @@ button {
   display: none;
 
 }
-
-
-
 
 
 /* ============================================
@@ -655,6 +558,10 @@ section {
 
 }
 
+
+/* ============================================
+   SECTION HEADING
+============================================ */
 
 .section-heading {
 
@@ -697,9 +604,6 @@ section {
   font-size: 13px;
 
 }
-
-
-
 
 
 /* ============================================
@@ -842,9 +746,6 @@ section {
 }
 
 
-
-
-
 /* ============================================
    MEMORY DATE
 ============================================ */
@@ -874,9 +775,6 @@ section {
     var(--pink-hard);
 
 }
-
-
-
 
 
 /* ============================================
@@ -926,9 +824,6 @@ section {
 }
 
 
-
-
-
 /* ============================================
    TODAY + MEMORY
 ============================================ */
@@ -939,9 +834,6 @@ section {
     var(--pink-hard);
 
 }
-
-
-
 
 
 /* ============================================
@@ -987,9 +879,6 @@ section {
 }
 
 
-
-
-
 /* ============================================
    TODAY + SELECTED
 ============================================ */
@@ -1027,9 +916,6 @@ section {
   cursor: default;
 
 }
-
-
-
 
 
 /* ============================================
@@ -1113,9 +999,6 @@ section {
   margin-top: 20px;
 
 }
-
-
-
 
 
 /* ============================================
@@ -1211,9 +1094,6 @@ section {
 }
 
 
-
-
-
 /* ============================================
    SUMMARY
 ============================================ */
@@ -1301,9 +1181,6 @@ section {
   color: var(--muted);
 
 }
-
-
-
 
 
 /* ============================================
@@ -1441,9 +1318,6 @@ section {
 }
 
 
-
-
-
 /* ============================================
    FOOTER
 ============================================ */
@@ -1482,9 +1356,6 @@ footer span {
 }
 
 
-
-
-
 /* ============================================
    FOOTER SUBTITLE
 ============================================ */
@@ -1496,9 +1367,6 @@ footer span {
 }
 
 
-
-
-
 /* ============================================
    FOOTER SITE CREDIT
 ============================================ */
@@ -1508,9 +1376,6 @@ footer span {
   display: block;
 
 }
-
-
-
 
 
 /* ============================================
@@ -1553,20 +1418,14 @@ footer span {
 }
 
 
-
-
-
-/* ============================================
-   HEART ICON
-============================================ */
-
 .site-watermark .heart-icon {
 
   display: inline;
 
   margin: 0 5px;
 
-  color: var(--pink-hard);
+  color:
+    var(--pink-hard);
 
   font-size: 9px;
 
@@ -1575,9 +1434,6 @@ footer span {
   vertical-align: middle;
 
 }
-
-
-
 
 
 /* ============================================
@@ -1605,9 +1461,6 @@ footer span {
   }
 
 }
-
-
-
 
 
 /* ============================================
@@ -1767,9 +1620,6 @@ footer span {
 }
 
 
-
-
-
 /* ============================================
    PHOTO INTERACTION
 ============================================ */
@@ -1778,6 +1628,9 @@ footer span {
 .featured-image {
 
   cursor: pointer;
+
+  transition:
+    transform 0.25s ease;
 
 }
 
@@ -1791,7 +1644,359 @@ footer span {
 }
 
 
+/* ============================================
+   GLOBAL FLOATING MUSIC SYSTEM
+============================================ */
 
+/*
+   YouTube player tetap tersembunyi.
+
+   Yang terlihat hanya music button
+   dan music title pill.
+
+   music.js menggunakan:
+
+   #youtubePlayer
+   #musicButton
+   #musicIcon
+   #musicTitle
+*/
+
+
+#youtubePlayer {
+
+  position: fixed;
+
+  width: 1px;
+
+  height: 1px;
+
+  left: -9999px;
+
+  top: -9999px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+}
+
+
+/* ============================================
+   MUSIC BUTTON CONTAINER
+============================================ */
+
+/*
+   Posisi floating music button.
+*/
+
+.music-button {
+
+  position: fixed;
+
+  right: 24px;
+
+  bottom: 24px;
+
+  z-index: 9998;
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.8);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  color:
+    var(--text);
+
+  box-shadow:
+    0 8px 25px
+    rgba(70, 70, 90, 0.14);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  line-height: 1;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  transition:
+    width 0.35s ease,
+    border-radius 0.35s ease,
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+}
+
+
+/* ============================================
+   MUSIC BUTTON EXPANDED
+============================================ */
+
+/*
+   State ini ditambahkan oleh music.js
+   ketika judul lagu ingin ditampilkan.
+*/
+
+.music-button.music-expanded {
+
+  width: min(
+    300px,
+    calc(100vw - 32px)
+  );
+
+  border-radius: 24px;
+
+  justify-content: flex-start;
+
+  gap: 2px;
+
+  padding:
+    0 16px 0 13px;
+
+}
+
+
+/* ============================================
+   MUSIC BUTTON HOVER
+============================================ */
+
+.music-button:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 12px 30px
+    rgba(70, 70, 90, 0.18);
+
+}
+
+
+.music-button:active {
+
+  transform:
+    scale(0.94);
+
+}
+
+
+.music-button:focus-visible {
+
+  outline:
+    2px solid
+    var(--pink-hard);
+
+  outline-offset: 3px;
+
+}
+
+
+/* ============================================
+   MUSIC ICON
+============================================ */
+
+#musicIcon {
+
+  flex:
+    0 0 46px;
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0;
+
+  color:
+    var(--pink-hard);
+
+  font-size: 16px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.25s ease;
+
+}
+
+
+/* ============================================
+   MUSIC TITLE
+============================================ */
+
+/*
+   Judul lagu disembunyikan ketika
+   button berada dalam keadaan normal.
+
+   music.js akan mengubah class:
+
+   .music-expanded
+*/
+
+#musicTitle {
+
+  display: block;
+
+  min-width: 0;
+
+  max-width: 220px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.1px;
+
+  color:
+    var(--text);
+
+  opacity: 0;
+
+  transform:
+    translateX(-8px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+
+}
+
+
+/* ============================================
+   MUSIC TITLE VISIBLE
+============================================ */
+
+.music-button.music-expanded #musicTitle {
+
+  opacity: 1;
+
+  transform:
+    translateX(0);
+
+}
+
+
+/* ============================================
+   MUSIC PLAYING STATE
+============================================ */
+
+.music-button.music-playing {
+
+  background:
+    rgba(255, 243, 248, 0.88);
+
+  border-color:
+    rgba(232, 93, 145, 0.25);
+
+  box-shadow:
+    0 8px 28px
+    rgba(232, 93, 145, 0.18);
+
+}
+
+
+.music-button.music-playing #musicIcon {
+
+  transform:
+    scale(1.05);
+
+}
+
+
+/* ============================================
+   MUSIC TITLE PLAYING
+============================================ */
+
+.music-button.music-playing #musicTitle {
+
+  color:
+    var(--text);
+
+}
+
+
+/* ============================================
+   MUSIC TITLE FADE
+============================================ */
+
+@keyframes musicTitleIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(-8px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(0);
+
+  }
+
+}
+
+
+.music-button.music-expanded #musicTitle {
+
+  animation:
+    musicTitleIn 0.3s ease forwards;
+
+}
 
 
 /* ============================================
@@ -1857,25 +2062,9 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      DESKTOP A FEW MOMENTS
   ========================================== */
-
-  /*
-   * Pada desktop sekarang section ini
-   * TIDAK lagi dikunci pada 3 foto.
-   *
-   * User dapat melakukan:
-   *
-   * ← scroll kiri
-   * → scroll kanan
-   *
-   * menggunakan mouse wheel / trackpad /
-   * shift + wheel / scrollbar jika diperlukan.
-   */
 
   .recent-moments-preview {
 
@@ -1947,10 +2136,54 @@ footer span {
 
   }
 
+
+  /* =========================================
+     DESKTOP MUSIC BUTTON
+  ========================================== */
+
+  .music-button {
+
+    right: 28px;
+
+    bottom: 28px;
+
+    width: 48px;
+
+    height: 48px;
+
+  }
+
+
+  #musicIcon {
+
+    flex-basis: 48px;
+
+    width: 48px;
+
+    height: 48px;
+
+  }
+
+
+  .music-button.music-expanded {
+
+    width: min(
+      330px,
+      calc(100vw - 56px)
+    );
+
+  }
+
+
+  #musicTitle {
+
+    max-width: 250px;
+
+    font-size: 11px;
+
+  }
+
 }
-
-
-
 
 
 /* ============================================
@@ -1972,9 +2205,6 @@ footer span {
       80px 20px;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2035,9 +2265,6 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      HERO SUMMARY
   ========================================== */
@@ -2089,27 +2316,9 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      RECENT PHOTO PREVIEW MOBILE
   ========================================== */
-
-  /*
-   * MOBILE:
-   *
-   * Tetap horizontal scroll.
-   *
-   * 3 foto pertama terlihat.
-   *
-   * Foto berikutnya dapat di-swipe
-   * ke kanan secara native.
-   *
-   * Urutan:
-   *
-   * OLDEST → NEWEST
-   */
 
   .recent-moments-preview {
 
@@ -2213,9 +2422,6 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      SECTION HEADING
   ========================================== */
@@ -2250,9 +2456,6 @@ footer span {
     font-size: 12px;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2372,9 +2575,6 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      SELECTED MOMENT
   ========================================== */
@@ -2414,9 +2614,6 @@ footer span {
     margin-top: 18px;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2494,9 +2691,6 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      SUMMARY
   ========================================== */
@@ -2567,9 +2761,6 @@ footer span {
     font-size: 9px;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2657,9 +2848,6 @@ footer span {
   }
 
 
-
-
-
   /* =========================================
      VIEW ALL
   ========================================== */
@@ -2672,9 +2860,6 @@ footer span {
       0 20px;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2727,16 +2912,14 @@ footer span {
 
     margin: 0 4px;
 
-    color: var(--pink-hard);
+    color:
+      var(--pink-hard);
 
     font-size: 8px;
 
     letter-spacing: 0;
 
   }
-
-
-
 
 
   /* =========================================
@@ -2786,10 +2969,166 @@ footer span {
 
   }
 
+
+  /* =========================================
+     MOBILE MUSIC BUTTON
+  ========================================== */
+
+  .music-button {
+
+    right: 16px;
+
+    bottom: 16px;
+
+    width: 40px;
+
+    height: 40px;
+
+    font-size: 14px;
+
+    box-shadow:
+      0 6px 18px
+      rgba(70, 70, 90, 0.14);
+
+  }
+
+
+  #musicIcon {
+
+    flex:
+      0 0 40px;
+
+    width: 40px;
+
+    height: 40px;
+
+    font-size: 14px;
+
+  }
+
+
+  /* =========================================
+     MOBILE MUSIC EXPANDED
+  ========================================== */
+
+  .music-button.music-expanded {
+
+    width:
+      min(
+        270px,
+        calc(100vw - 32px)
+      );
+
+    height: 40px;
+
+    border-radius: 22px;
+
+    padding:
+      0 12px 0 0;
+
+    gap: 6px;
+
+  }
+
+
+  #musicTitle {
+
+    max-width:
+      calc(100vw - 85px);
+
+    font-size: 10px;
+
+    letter-spacing: 0;
+
+  }
+
 }
 
 
+/* ============================================
+   VERY SMALL MOBILE
+============================================ */
 
+@media (max-width: 380px) {
+
+  .music-button {
+
+    right: 12px;
+
+    bottom: 12px;
+
+    width: 38px;
+
+    height: 38px;
+
+  }
+
+
+  #musicIcon {
+
+    flex:
+      0 0 38px;
+
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 13px;
+
+  }
+
+
+  .music-button.music-expanded {
+
+    width:
+      calc(100vw - 24px);
+
+    height: 38px;
+
+    border-radius: 20px;
+
+  }
+
+
+  #musicTitle {
+
+    max-width:
+      calc(100vw - 70px);
+
+    font-size: 9px;
+
+  }
+
+
+  .hero-summary {
+
+    gap: 6px;
+
+  }
+
+
+  .hero-summary-item {
+
+    padding:
+      13px 5px;
+
+  }
+
+
+  .hero-summary-item .summary-number {
+
+    font-size: 27px;
+
+  }
+
+
+  .hero-summary-item .summary-label {
+
+    font-size: 10px;
+
+  }
+
+}
 
 
 /* ============================================
@@ -2832,6 +3171,16 @@ footer span {
   .hero-summary-item {
 
     transition: none;
+
+  }
+
+
+  .music-button,
+  #musicTitle {
+
+    transition: none;
+
+    animation: none;
 
   }
 

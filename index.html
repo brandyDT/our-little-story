@@ -349,33 +349,19 @@
 
         <div class="calendar-weekdays">
 
-          <span>
-            MON
-          </span>
+          <span>MON</span>
 
-          <span>
-            TUE
-          </span>
+          <span>TUE</span>
 
-          <span>
-            WED
-          </span>
+          <span>WED</span>
 
-          <span>
-            THU
-          </span>
+          <span>THU</span>
 
-          <span>
-            FRI
-          </span>
+          <span>FRI</span>
 
-          <span>
-            SAT
-          </span>
+          <span>SAT</span>
 
-          <span>
-            SUN
-          </span>
+          <span>SUN</span>
 
         </div>
 
@@ -551,10 +537,62 @@
 
 
   <!-- =========================================
+       GLOBAL MUSIC PLAYER
+  ========================================== -->
+
+  <!--
+       YouTube Player Container
+       Video akan diputar secara tersembunyi.
+  -->
+
+  <div
+    id="youtubePlayer"
+    aria-hidden="true"
+  ></div>
+
+
+  <!-- =========================================
+       MUSIC BUTTON
+  ========================================== -->
+
+  <button
+    id="musicButton"
+    class="music-button"
+    aria-label="Play music"
+    title="Play music"
+    type="button"
+  >
+
+    <span id="musicIcon">
+      ♫
+    </span>
+
+  </button>
+
+
+  <!-- =========================================
        JAVASCRIPT
   ========================================== -->
 
+  <!--
+       MAIN WEBSITE SCRIPT
+  -->
+
   <script src="script.js"></script>
+
+
+  <!--
+       YOUTUBE IFRAME PLAYER API
+  -->
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+
+  <!--
+       GLOBAL MUSIC SYSTEM
+  -->
+
+  <script src="music.js"></script>
 
 
 </body>
