@@ -1509,16 +1509,7 @@ function renderImportantDates() {
           new Date(b.date)
       );
 
-
-  /*
-   * Batasi 8
-   */
-
-  const display =
-    important.slice(
-      0,
-      8
-    );
+  const display = important;
 
 
   if (
