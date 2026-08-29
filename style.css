@@ -33,7 +33,6 @@
   --muted: #8b8790;
   --border: #eadde4;
   --white: #ffffff;
-
 }
 
 
@@ -47,23 +46,18 @@
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
   background: var(--background);
   color: var(--text);
-
   font-family:
     "DM Sans",
     sans-serif;
-
   line-height: 1.6;
 }
-
 
 button {
   font-family: inherit;
@@ -75,80 +69,48 @@ button {
 ============================================ */
 
 .hero {
-
   min-height: 100vh;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   text-align: center;
-
   padding: 40px 24px;
-
 }
-
 
 .hero-content {
-
   width: 100%;
-
   max-width: 760px;
-
 }
-
 
 .eyebrow {
-
   font-size: 10px;
-
   letter-spacing: 3px;
-
   text-transform: uppercase;
-
   color: var(--muted);
-
   margin-bottom: 20px;
-
 }
 
-
 .hero h1 {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size:
     clamp(
       64px,
       14vw,
       130px
     );
-
   font-weight: 500;
-
   line-height: 0.85;
-
   letter-spacing: -3px;
-
   margin-bottom: 40px;
-
 }
 
-
 .hero-description {
-
   color: var(--muted);
-
   font-size: 14px;
-
   line-height: 1.8;
-
   margin-bottom: 45px;
-
 }
 
 
@@ -157,41 +119,25 @@ button {
 ============================================ */
 
 .explore-button {
-
   background: none;
-
   border: none;
-
   color: var(--text);
-
   text-transform: uppercase;
-
   letter-spacing: 2px;
-
   font-size: 10px;
-
   cursor: pointer;
-
 }
-
 
 .explore-button span {
-
   display: inline-block;
-
   margin-left: 10px;
-
   transition:
     transform 0.3s ease;
-
 }
 
-
 .explore-button:hover span {
-
   transform:
     translateY(4px);
-
 }
 
 
@@ -200,109 +146,67 @@ button {
 ============================================ */
 
 .hero-summary {
-
   display: flex;
-
   justify-content: center;
-
   align-items: stretch;
-
   gap: 12px;
-
   margin:
     30px 0 35px;
-
 }
 
-
 .hero-summary-item {
-
   min-width: 115px;
-
   padding:
     18px 14px;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   text-decoration: none;
-
   background:
     rgba(255, 255, 255, 0.45);
-
   border:
     1px solid
     rgba(255, 255, 255, 0.7);
-
   border-radius: 18px;
-
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background 0.25s ease;
-
 }
 
-
 .hero-summary-item:hover {
-
   transform:
     translateY(-5px);
-
   background:
     rgba(255, 255, 255, 0.75);
-
   box-shadow:
     0 12px 30px
     rgba(70, 70, 90, 0.10);
-
 }
 
-
 .hero-summary-item .summary-number {
-
   display: block;
-
   font-family:
     "Cormorant Garamond",
     Georgia,
     serif;
-
   font-size: 36px;
-
   font-weight: 600;
-
   line-height: 1;
-
   margin-bottom: 7px;
-
 }
-
 
 .hero-summary-item .summary-label {
-
   font-size: 13px;
-
   font-weight: 600;
-
   color: #34343d;
-
 }
 
-
 .hero-summary-item .summary-description {
-
   margin-top: 3px;
-
   font-size: 11px;
-
   color: #8a8a96;
-
 }
 
 
@@ -312,9 +216,7 @@ button {
 
 .hero-summary-item[data-category="brandon"]
 .summary-number {
-
   color: #5b8fc9;
-
 }
 
 
@@ -324,9 +226,7 @@ button {
 
 .hero-summary-item[data-category="nurma"]
 .summary-number {
-
   color: #e85d8c;
-
 }
 
 
@@ -336,9 +236,7 @@ button {
 
 .hero-summary-item[data-category="moments"]
 .summary-number {
-
   color: #d36a9d;
-
 }
 
 
@@ -347,33 +245,20 @@ button {
 ============================================ */
 
 .recent-moments-preview {
-
   width: 100%;
-
   max-width: 1100px;
-
   margin:
     32px auto 0;
-
   overflow-x: auto;
-
   overflow-y: hidden;
-
   position: relative;
-
   -webkit-overflow-scrolling: touch;
-
   scrollbar-width: none;
-
   scroll-behavior: smooth;
-
 }
 
-
 .recent-moments-preview::-webkit-scrollbar {
-
   display: none;
-
 }
 
 
@@ -382,13 +267,9 @@ button {
 ============================================ */
 
 .recent-preview-wrapper {
-
   width: max-content;
-
   min-width: 100%;
-
   overflow: visible;
-
 }
 
 
@@ -397,26 +278,16 @@ button {
 ============================================ */
 
 .recent-preview-track {
-
   display: flex;
-
   align-items: stretch;
-
   justify-content: flex-start;
-
   flex-wrap: nowrap;
-
   width: max-content;
-
   max-width: none;
-
   gap: 14px;
-
   will-change: transform;
-
   transform:
     translate3d(0, 0, 0);
-
 }
 
 
@@ -425,38 +296,25 @@ button {
 ============================================ */
 
 .recent-preview-item {
-
   position: relative;
-
   flex:
     0 0 165px;
-
   width: 165px;
-
   min-width: 165px;
-
   height: 210px;
-
   overflow: hidden;
-
   border-radius: 14px;
-
   background:
     rgba(255, 255, 255, 0.45);
-
   border:
     1px solid
     rgba(255, 255, 255, 0.75);
-
   box-shadow:
     0 12px 35px
     rgba(70, 70, 90, 0.10);
-
   opacity: 1;
-
   transform:
     translate3d(0, 0, 0);
-
 }
 
 
@@ -465,26 +323,16 @@ button {
 ============================================ */
 
 .recent-preview-item img {
-
   width: 100%;
-
   height: 100%;
-
   display: block;
-
   object-fit: cover;
-
   cursor: pointer;
-
   flex-shrink: 0;
-
   user-select: none;
-
   -webkit-user-drag: none;
-
   transition:
     transform 0.8s ease;
-
 }
 
 
@@ -493,10 +341,8 @@ button {
 ============================================ */
 
 .recent-preview-item:hover img {
-
   transform:
     scale(1.04);
-
 }
 
 
@@ -505,24 +351,16 @@ button {
 ============================================ */
 
 .recent-preview-item.exiting {
-
   opacity: 1;
-
   transform:
     translate3d(0, 0, 0);
-
 }
 
-
 .recent-preview-item.entering {
-
   animation: none;
-
   opacity: 1;
-
   transform:
     translate3d(0, 0, 0);
-
 }
 
 
@@ -531,9 +369,7 @@ button {
 ============================================ */
 
 .recent-moments-preview:empty {
-
   display: none;
-
 }
 
 
@@ -542,20 +378,15 @@ button {
 ============================================ */
 
 main {
-
   width: 100%;
-
-  overflow: hidden;
-
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
-
 section {
-
   padding:
     100px
     24px;
-
 }
 
 
@@ -564,45 +395,30 @@ section {
 ============================================ */
 
 .section-heading {
-
   max-width: 600px;
-
   margin:
     0 auto 50px;
-
   text-align: center;
-
 }
 
-
 .section-heading h2 {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size:
     clamp(
       42px,
       8vw,
       64px
     );
-
   font-weight: 500;
-
   line-height: 1;
-
   margin-bottom: 15px;
-
 }
 
-
 .section-heading p:not(.eyebrow) {
-
   color: var(--muted);
-
   font-size: 13px;
-
 }
 
 
@@ -611,138 +427,80 @@ section {
 ============================================ */
 
 .calendar-section {
-
   max-width: 900px;
-
   margin: auto;
-
 }
 
-
 .calendar-container {
-
   max-width: 600px;
-
   margin: auto;
-
   background:
     rgba(255, 255, 255, 0.35);
-
   border:
     1px solid
     var(--border);
-
   padding:
     30px 20px;
-
 }
-
 
 .calendar-header {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   text-align: center;
-
   margin-bottom: 35px;
-
 }
 
-
 .calendar-header h3 {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 32px;
-
   font-weight: 500;
-
   line-height: 1;
-
 }
-
 
 .calendar-header span {
-
   font-size: 10px;
-
   letter-spacing: 2px;
-
   color: var(--muted);
-
 }
-
 
 .calendar-nav {
-
   border: none;
-
   background: none;
-
   font-size: 18px;
-
   color: var(--muted);
-
   cursor: pointer;
-
   padding: 10px;
-
 }
-
 
 .calendar-weekdays,
 .calendar-days {
-
   display: grid;
-
   grid-template-columns:
     repeat(7, 1fr);
-
 }
-
 
 .calendar-weekdays {
-
   margin-bottom: 10px;
-
 }
-
 
 .calendar-weekdays span {
-
   text-align: center;
-
   font-size: 8px;
-
   letter-spacing: 1px;
-
   color: var(--muted);
-
 }
 
-
 .calendar-day {
-
   position: relative;
-
   height: 52px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   cursor: default;
-
   font-size: 12px;
-
 }
 
 
@@ -751,29 +509,18 @@ section {
 ============================================ */
 
 .calendar-day.has-memory {
-
   cursor: pointer;
-
 }
 
-
 .calendar-day.has-memory::after {
-
   content: "";
-
   position: absolute;
-
   bottom: 7px;
-
   width: 4px;
-
   height: 4px;
-
   border-radius: 50%;
-
   background:
     var(--pink-hard);
-
 }
 
 
@@ -782,45 +529,28 @@ section {
 ============================================ */
 
 .calendar-day.today {
-
   color:
     var(--pink-hard);
-
   font-weight: 700;
-
 }
-
 
 .calendar-day.today span {
-
   position: relative;
-
   z-index: 2;
-
 }
 
-
 .calendar-day.today::before {
-
   content: "";
-
   position: absolute;
-
   width: 34px;
-
   height: 34px;
-
   border-radius: 50%;
-
   border:
     1px solid
     rgba(232, 93, 145, 0.45);
-
   background:
     rgba(255, 255, 255, 0.55);
-
   z-index: 0;
-
 }
 
 
@@ -829,10 +559,8 @@ section {
 ============================================ */
 
 .calendar-day.today.has-memory::after {
-
   background:
     var(--pink-hard);
-
 }
 
 
@@ -841,41 +569,25 @@ section {
 ============================================ */
 
 .calendar-day.selected {
-
   color:
     var(--white);
-
   font-weight: 600;
-
 }
-
 
 .calendar-day.selected::before {
-
   content: "";
-
   position: absolute;
-
   width: 34px;
-
   height: 34px;
-
   border-radius: 50%;
-
   background:
     var(--pink-hard);
-
   z-index: 0;
-
 }
 
-
 .calendar-day.selected span {
-
   position: relative;
-
   z-index: 1;
-
 }
 
 
@@ -884,37 +596,25 @@ section {
 ============================================ */
 
 .calendar-day.today.selected {
-
   color:
     var(--white);
-
 }
 
-
 .calendar-day.today.selected::before {
-
   width: 36px;
-
   height: 36px;
-
   background:
     var(--pink-hard);
-
   border:
     2px solid
     rgba(255, 255, 255, 0.85);
-
   box-shadow:
     0 0 0 2px
     rgba(232, 93, 145, 0.22);
-
 }
 
-
 .calendar-day.empty {
-
   cursor: default;
-
 }
 
 
@@ -923,81 +623,49 @@ section {
 ============================================ */
 
 .selected-moment {
-
   max-width: 600px;
-
   margin:
     30px auto 0;
-
   padding:
     25px;
-
   border-top:
     1px solid
     var(--border);
-
   text-align: center;
-
   animation:
     fadeUp 0.4s ease;
-
 }
-
 
 .selected-moment.hidden {
-
   display: none;
-
 }
-
 
 .selected-date {
-
   font-size: 10px;
-
   letter-spacing: 2px;
-
   text-transform: uppercase;
-
   color: var(--muted);
-
 }
 
-
 .selected-location {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 28px;
-
   margin-top: 5px;
-
 }
-
 
 .selected-description {
-
   font-size: 13px;
-
   color: var(--muted);
-
   margin-top: 5px;
-
 }
 
-
 .selected-photo {
-
   width: 100%;
-
   max-height: 350px;
-
   object-fit: cover;
-
   margin-top: 20px;
-
 }
 
 
@@ -1006,97 +674,98 @@ section {
 ============================================ */
 
 .important-section {
-
   background:
     var(--surface);
-
 }
 
 
+/*
+   IMPORTANT DATES SCROLL CONTAINER
+
+   Desktop:
+   - Bisa scroll menggunakan mouse wheel
+   - Bisa drag scrollbar jika ditampilkan oleh browser
+
+   Mobile:
+   - Bisa swipe menggunakan jari
+   - Scrollbar disembunyikan
+*/
+
 .important-dates {
+  width: 100%;
   max-width: 700px;
-  margin: auto;
+  height: 500px;
   max-height: 500px;
+  margin: auto;
+
   overflow-y: auto;
   overflow-x: hidden;
+
   -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
+
+  touch-action: pan-y;
+
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .important-dates::-webkit-scrollbar {
+  width: 0;
+  height: 0;
   display: none;
 }
 
 
+/* ============================================
+   IMPORTANT DATE ITEM
+============================================ */
+
 .important-date {
-
   display: flex;
-
   align-items: center;
-
   gap: 25px;
-
   padding:
     22px 0;
-
   border-bottom:
     1px solid
     var(--border);
-
   cursor: pointer;
-
+  flex-shrink: 0;
 }
 
-
 .important-date:first-child {
-
   border-top:
     1px solid
     var(--border);
-
 }
 
-
 .important-date-number {
-
   min-width: 60px;
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 30px;
-
 }
-
 
 .important-date-info {
-
   flex: 1;
-
+  min-width: 0;
 }
-
 
 .important-date-title {
-
   font-size: 13px;
-
 }
-
 
 .important-date-location {
-
   font-size: 11px;
-
   color: var(--muted);
-
 }
 
-
 .important-date-arrow {
-
   color: var(--muted);
-
 }
 
 
@@ -1105,87 +774,52 @@ section {
 ============================================ */
 
 .summary-section {
-
   max-width: 900px;
-
   margin: auto;
-
 }
-
 
 .summary-grid {
-
   display: grid;
-
   grid-template-columns:
     repeat(3, 1fr);
-
   max-width: 750px;
-
   margin: auto;
-
 }
 
-
 .summary-item {
-
   text-align: center;
-
   padding:
     20px;
-
   border-right:
     1px solid
     var(--border);
-
 }
-
 
 .summary-item:last-child {
-
   border-right: none;
-
 }
 
-
 .summary-number {
-
   display: block;
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 58px;
-
   line-height: 1;
-
 }
-
 
 .summary-label {
-
   display: block;
-
   text-transform: uppercase;
-
   letter-spacing: 2px;
-
   font-size: 9px;
-
   margin-top: 10px;
-
 }
 
-
 .summary-description {
-
   display: block;
-
   font-size: 10px;
-
   color: var(--muted);
-
 }
 
 
@@ -1194,133 +828,76 @@ section {
 ============================================ */
 
 .featured-section {
-
   background:
     var(--surface);
-
 }
-
 
 .featured-moments {
-
   display: flex;
-
   gap: 20px;
-
   overflow-x: auto;
-
   max-width: 1100px;
-
   margin: auto;
-
   padding:
     0 0 20px;
-
   scrollbar-width: none;
-
 }
-
 
 .featured-moments::-webkit-scrollbar {
-
   display: none;
-
 }
-
 
 .featured-card {
-
   min-width: 280px;
-
   max-width: 320px;
-
 }
-
 
 .featured-image {
-
   width: 100%;
-
   aspect-ratio: 4 / 5;
-
   object-fit: cover;
-
   display: block;
-
 }
-
 
 .featured-info {
-
   padding-top: 15px;
-
 }
-
 
 .featured-date {
-
   font-size: 9px;
-
   letter-spacing: 2px;
-
   color: var(--muted);
-
   text-transform: uppercase;
-
 }
 
-
 .featured-title {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 25px;
-
   line-height: 1.1;
-
   margin-top: 4px;
-
 }
-
 
 .featured-location {
-
   font-size: 10px;
-
   color: var(--muted);
-
   margin-top: 4px;
-
 }
-
 
 .view-all-container {
-
   text-align: center;
-
   margin-top: 45px;
-
 }
 
-
 .text-button {
-
   border: none;
-
   background: none;
-
   font-size: 10px;
-
   text-transform: uppercase;
-
   letter-spacing: 2px;
-
   cursor: pointer;
-
   color: var(--text);
-
 }
 
 
@@ -1329,36 +906,23 @@ section {
 ============================================ */
 
 footer {
-
   position: relative;
-
   text-align: center;
-
   padding:
     60px 24px 30px;
-
 }
 
-
 footer p {
-
   font-family:
     "Cormorant Garamond",
     serif;
-
   font-size: 24px;
-
 }
 
-
 footer span {
-
   font-size: 10px;
-
   color: var(--muted);
-
   margin-top: 5px;
-
 }
 
 
@@ -1367,9 +931,7 @@ footer span {
 ============================================ */
 
 .footer-subtitle {
-
   display: block;
-
 }
 
 
@@ -1378,9 +940,7 @@ footer span {
 ============================================ */
 
 .site-credit {
-
   display: block;
-
 }
 
 
@@ -1389,56 +949,34 @@ footer span {
 ============================================ */
 
 .site-watermark {
-
   display: block;
-
   margin-top: 28px;
-
   font-family:
     "DM Sans",
     sans-serif;
-
   font-size: 8px;
-
   font-weight: 500;
-
   letter-spacing: 1.5px;
-
   color:
     rgba(90, 86, 94, 0.62);
-
   text-transform: none;
-
   user-select: none;
-
   transition:
     opacity 0.25s ease;
-
 }
-
 
 .site-watermark:hover {
-
   opacity: 0.8;
-
 }
 
-
 .site-watermark .heart-icon {
-
   display: inline;
-
   margin: 0 5px;
-
   color:
     var(--pink-hard);
-
   font-size: 9px;
-
   letter-spacing: 0;
-
   vertical-align: middle;
-
 }
 
 
@@ -1449,23 +987,16 @@ footer span {
 @keyframes fadeUp {
 
   from {
-
     opacity: 0;
-
     transform:
       translateY(10px);
-
   }
 
   to {
-
     opacity: 1;
-
     transform:
       translateY(0);
-
   }
-
 }
 
 
@@ -1474,155 +1005,88 @@ footer span {
 ============================================ */
 
 .photo-lightbox {
-
   position: fixed;
-
   inset: 0;
-
   z-index: 9999;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 24px;
-
   background:
     rgba(20, 20, 30, 0.94);
-
   opacity: 0;
-
   visibility: hidden;
-
   transition:
     opacity 0.25s ease,
     visibility 0.25s ease;
-
 }
-
 
 .photo-lightbox.active {
-
   opacity: 1;
-
   visibility: visible;
-
 }
-
 
 .photo-lightbox-content {
-
   position: relative;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   max-width: 95vw;
-
   max-height: 95vh;
-
 }
 
-
 .photo-lightbox-image {
-
   display: block;
-
   max-width: 95vw;
-
   max-height: 85vh;
-
   width: auto;
-
   height: auto;
-
   object-fit: contain;
-
   border-radius: 12px;
-
   box-shadow:
     0 20px 60px
     rgba(0, 0, 0, 0.35);
-
 }
-
 
 .photo-lightbox-caption {
-
   margin-top: 16px;
-
   max-width: 700px;
-
   color: white;
-
   font-size: 14px;
-
   line-height: 1.5;
-
   text-align: center;
-
   opacity: 0.9;
-
 }
 
-
 .photo-lightbox-close {
-
   position: absolute;
-
   top: 20px;
-
   right: 24px;
-
   z-index: 10000;
-
   width: 44px;
-
   height: 44px;
-
   border: none;
-
   border-radius: 50%;
-
   background:
     rgba(255, 255, 255, 0.16);
-
   color: white;
-
   font-size: 30px;
-
   line-height: 1;
-
   cursor: pointer;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   transition:
     background 0.2s ease,
     transform 0.2s ease;
-
 }
 
-
 .photo-lightbox-close:hover {
-
   background:
     rgba(255, 255, 255, 0.28);
-
   transform:
     scale(1.05);
-
 }
 
 
@@ -1632,21 +1096,15 @@ footer span {
 
 .selected-photo,
 .featured-image {
-
   cursor: pointer;
-
   transition:
     transform 0.25s ease;
-
 }
-
 
 .selected-photo:hover,
 .featured-image:hover {
-
   transform:
     scale(1.015);
-
 }
 
 
@@ -1654,39 +1112,15 @@ footer span {
    GLOBAL FLOATING MUSIC SYSTEM
 ============================================ */
 
-/*
-   YouTube player tetap tersembunyi.
-
-   Yang terlihat hanya music button
-   dan music title pill.
-
-   music.js menggunakan:
-
-   #youtubePlayer
-   #musicButton
-   #musicIcon
-   #musicTitle
-*/
-
-
 #youtubePlayer {
-
   position: fixed;
-
   width: 1px;
-
   height: 1px;
-
   left: -9999px;
-
   top: -9999px;
-
   opacity: 0;
-
   pointer-events: none;
-
   overflow: hidden;
-
 }
 
 
@@ -1694,71 +1128,43 @@ footer span {
    MUSIC BUTTON CONTAINER
 ============================================ */
 
-/*
-   Posisi floating music button.
-*/
-
 .music-button {
-
   position: fixed;
-
   right: 24px;
-
   bottom: 24px;
-
   z-index: 9998;
-
   width: 46px;
-
   height: 46px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 0;
-
   border:
     1px solid
     rgba(255, 255, 255, 0.8);
-
   border-radius: 50%;
-
   background:
     rgba(255, 255, 255, 0.72);
-
   color:
     var(--text);
-
   box-shadow:
     0 8px 25px
     rgba(70, 70, 90, 0.14);
-
   backdrop-filter:
     blur(12px);
-
   -webkit-backdrop-filter:
     blur(12px);
-
   cursor: pointer;
-
   font-size: 17px;
-
   line-height: 1;
-
   overflow: hidden;
-
   white-space: nowrap;
-
   transition:
     width 0.35s ease,
     border-radius 0.35s ease,
     transform 0.25s ease,
     background 0.25s ease,
     box-shadow 0.25s ease;
-
 }
 
 
@@ -1766,27 +1172,16 @@ footer span {
    MUSIC BUTTON EXPANDED
 ============================================ */
 
-/*
-   State ini ditambahkan oleh music.js
-   ketika judul lagu ingin ditampilkan.
-*/
-
 .music-button.music-expanded {
-
   width: min(
     300px,
     calc(100vw - 32px)
   );
-
   border-radius: 24px;
-
   justify-content: flex-start;
-
   gap: 2px;
-
   padding:
     0 16px 0 13px;
-
 }
 
 
@@ -1795,37 +1190,26 @@ footer span {
 ============================================ */
 
 .music-button:hover {
-
   transform:
     translateY(-3px)
     scale(1.04);
-
   background:
     rgba(255, 255, 255, 0.9);
-
   box-shadow:
     0 12px 30px
     rgba(70, 70, 90, 0.18);
-
 }
-
 
 .music-button:active {
-
   transform:
     scale(0.94);
-
 }
 
-
 .music-button:focus-visible {
-
   outline:
     2px solid
     var(--pink-hard);
-
   outline-offset: 3px;
-
 }
 
 
@@ -1834,32 +1218,20 @@ footer span {
 ============================================ */
 
 #musicIcon {
-
   flex:
     0 0 46px;
-
   width: 46px;
-
   height: 46px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   margin: 0;
-
   color:
     var(--pink-hard);
-
   font-size: 16px;
-
   line-height: 1;
-
   transition:
     transform 0.25s ease;
-
 }
 
 
@@ -1867,53 +1239,28 @@ footer span {
    MUSIC TITLE
 ============================================ */
 
-/*
-   Judul lagu disembunyikan ketika
-   button berada dalam keadaan normal.
-
-   music.js akan mengubah class:
-
-   .music-expanded
-*/
-
 #musicTitle {
-
   display: block;
-
   min-width: 0;
-
   max-width: 220px;
-
   overflow: hidden;
-
   text-overflow: ellipsis;
-
   white-space: nowrap;
-
   font-family:
     "DM Sans",
     sans-serif;
-
   font-size: 11px;
-
   font-weight: 500;
-
   letter-spacing: 0.1px;
-
   color:
     var(--text);
-
   opacity: 0;
-
   transform:
     translateX(-8px);
-
   pointer-events: none;
-
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
-
 }
 
 
@@ -1922,12 +1269,9 @@ footer span {
 ============================================ */
 
 .music-button.music-expanded #musicTitle {
-
   opacity: 1;
-
   transform:
     translateX(0);
-
 }
 
 
@@ -1936,25 +1280,18 @@ footer span {
 ============================================ */
 
 .music-button.music-playing {
-
   background:
     rgba(255, 243, 248, 0.88);
-
   border-color:
     rgba(232, 93, 145, 0.25);
-
   box-shadow:
     0 8px 28px
     rgba(232, 93, 145, 0.18);
-
 }
 
-
 .music-button.music-playing #musicIcon {
-
   transform:
     scale(1.05);
-
 }
 
 
@@ -1963,10 +1300,8 @@ footer span {
 ============================================ */
 
 .music-button.music-playing #musicTitle {
-
   color:
     var(--text);
-
 }
 
 
@@ -1977,31 +1312,21 @@ footer span {
 @keyframes musicTitleIn {
 
   from {
-
     opacity: 0;
-
     transform:
       translateX(-8px);
-
   }
 
   to {
-
     opacity: 1;
-
     transform:
       translateX(0);
-
   }
-
 }
 
-
 .music-button.music-expanded #musicTitle {
-
   animation:
     musicTitleIn 0.3s ease forwards;
-
 }
 
 
@@ -2012,59 +1337,36 @@ footer span {
 @media (min-width: 768px) {
 
   section {
-
     padding:
       140px 40px;
-
   }
-
 
   .hero h1 {
-
     letter-spacing: -5px;
-
   }
-
 
   .calendar-container {
-
     padding:
       40px;
-
   }
-
 
   .calendar-day {
-
     height: 65px;
-
   }
-
 
   .calendar-day.selected::before {
-
     width: 40px;
-
     height: 40px;
-
   }
-
 
   .calendar-day.today::before {
-
     width: 40px;
-
     height: 40px;
-
   }
 
-
   .calendar-day.today.selected::before {
-
     width: 42px;
-
     height: 42px;
-
   }
 
 
@@ -2073,73 +1375,42 @@ footer span {
   ========================================== */
 
   .recent-moments-preview {
-
     width: 100%;
-
     max-width: 1100px;
-
     margin-top: 36px;
-
     margin-left: auto;
-
     margin-right: auto;
-
     overflow-x: auto;
-
     overflow-y: hidden;
-
     padding:
       0 0 16px;
-
     scrollbar-width: none;
-
     -webkit-overflow-scrolling: touch;
-
     scroll-behavior: smooth;
-
   }
-
 
   .recent-moments-preview::-webkit-scrollbar {
-
     display: none;
-
   }
-
 
   .recent-preview-wrapper {
-
     width: max-content;
-
     min-width: 100%;
-
   }
-
 
   .recent-preview-track {
-
     gap: 16px;
-
     width: max-content;
-
     max-width: none;
-
   }
 
-
   .recent-preview-item {
-
     flex:
       0 0 180px;
-
     width: 180px;
-
     min-width: 180px;
-
     height: 230px;
-
     border-radius: 16px;
-
   }
 
 
@@ -2148,47 +1419,29 @@ footer span {
   ========================================== */
 
   .music-button {
-
     right: 28px;
-
     bottom: 28px;
-
     width: 48px;
-
     height: 48px;
-
   }
-
 
   #musicIcon {
-
     flex-basis: 48px;
-
     width: 48px;
-
     height: 48px;
-
   }
 
-
   .music-button.music-expanded {
-
     width: min(
       330px,
       calc(100vw - 56px)
     );
-
   }
-
 
   #musicTitle {
-
     max-width: 250px;
-
     font-size: 11px;
-
   }
-
 }
 
 
@@ -2198,32 +1451,64 @@ footer span {
 
 @media (max-width: 600px) {
 
-  body {
-
+  html {
     overflow-x: hidden;
-
   }
 
+  body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
 
   section {
-
     padding:
       80px 20px;
-
   }
 
-.important-dates {
-  max-height: 450px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  touch-action: pan-y;
-}
 
-.important-dates::-webkit-scrollbar {
-  display: none;
-}
+  /* =========================================
+     IMPORTANT DATES MOBILE SCROLL
+  ========================================== */
+
+  .important-section {
+    position: relative;
+    overflow: visible;
+  }
+
+  .important-dates {
+    width: 100%;
+    max-width: 100%;
+    
+    height: 450px;
+    max-height: 450px;
+    min-height: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    overscroll-behavior-x: none;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .important-dates::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .important-date {
+    flex-shrink: 0;
+  }
 
 
   /* =========================================
@@ -2231,56 +1516,35 @@ footer span {
   ========================================== */
 
   .hero {
-
     min-height: 100svh;
-
     padding:
       30px 24px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
   }
-
 
   .hero-content {
-
     width: 100%;
-
     max-width: 380px;
-
   }
 
-
   .hero h1 {
-
     font-size:
       clamp(
         64px,
         20vw,
         92px
       );
-
     line-height: 0.82;
-
     letter-spacing: -3px;
-
     margin-bottom: 32px;
-
   }
 
-
   .hero-description {
-
     font-size: 13px;
-
     line-height: 1.7;
-
     margin-bottom: 38px;
-
   }
 
 
@@ -2289,49 +1553,30 @@ footer span {
   ========================================== */
 
   .hero-summary {
-
     width: 100%;
-
     gap: 8px;
-
     margin:
       25px 0 30px;
-
   }
-
 
   .hero-summary-item {
-
     min-width: 0;
-
     flex: 1;
-
     padding:
       15px 8px;
-
     border-radius: 15px;
-
   }
-
 
   .hero-summary-item .summary-number {
-
     font-size: 30px;
-
   }
-
 
   .hero-summary-item .summary-label {
-
     font-size: 11px;
-
   }
 
-
   .hero-summary-item .summary-description {
-
     font-size: 9px;
-
   }
 
 
@@ -2340,104 +1585,60 @@ footer span {
   ========================================== */
 
   .recent-moments-preview {
-
     width: 100%;
-
     max-width: 100%;
-
     margin-top: 28px;
-
     margin-left: 0;
-
     margin-right: 0;
-
     padding:
       0 0 10px;
-
     overflow-x: auto;
-
     overflow-y: hidden;
-
     position: relative;
-
     scrollbar-width: none;
-
     -webkit-overflow-scrolling: touch;
-
     scroll-behavior: smooth;
-
+    touch-action: pan-x;
   }
-
 
   .recent-moments-preview::-webkit-scrollbar {
-
     display: none;
-
   }
-
 
   .recent-preview-wrapper {
-
     width: max-content;
-
     min-width: 100%;
-
   }
-
 
   .recent-preview-track {
-
     display: flex;
-
     flex-wrap: nowrap;
-
     justify-content: flex-start;
-
     align-items: stretch;
-
     width: max-content;
-
     max-width: none;
-
     gap: 10px;
-
     transform:
       translate3d(0, 0, 0);
-
     will-change: transform;
-
   }
-
 
   .recent-preview-item {
-
     flex:
       0 0 108px;
-
     width: 108px;
-
     min-width: 108px;
-
     height: 140px;
-
     border-radius: 12px;
-
     opacity: 1;
-
     transform:
       translate3d(0, 0, 0);
-
   }
 
-
   .recent-preview-item img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
   }
 
 
@@ -2446,34 +1647,21 @@ footer span {
   ========================================== */
 
   .section-heading {
-
     margin-bottom: 36px;
-
   }
-
 
   .section-heading .eyebrow {
-
     margin-bottom: 14px;
-
   }
-
 
   .section-heading h2 {
-
     font-size: 46px;
-
     line-height: 0.95;
-
     letter-spacing: -1px;
-
   }
 
-
   .section-heading p:not(.eyebrow) {
-
     font-size: 12px;
-
   }
 
 
@@ -2482,115 +1670,66 @@ footer span {
   ========================================== */
 
   .calendar-section {
-
     padding-left: 16px;
-
     padding-right: 16px;
-
   }
-
 
   .calendar-container {
-
     width: 100%;
-
     padding:
       24px 12px;
-
     border-radius: 2px;
-
   }
-
 
   .calendar-header {
-
     margin-bottom: 24px;
-
   }
-
 
   .calendar-header h3 {
-
     font-size: 28px;
-
   }
-
 
   .calendar-header span {
-
     font-size: 9px;
-
   }
-
 
   .calendar-nav {
-
     width: 40px;
-
     height: 40px;
-
     padding: 0;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
   }
-
 
   .calendar-weekdays span {
-
     font-size: 7px;
-
   }
-
 
   .calendar-day {
-
     height: 46px;
-
     font-size: 11px;
-
   }
-
 
   .calendar-day.selected::before {
-
     width: 32px;
-
     height: 32px;
-
   }
-
 
   .calendar-day.has-memory::after {
-
     bottom: 4px;
-
     width: 5px;
-
     height: 5px;
-
   }
-
 
   .calendar-day.today::before {
-
     width: 32px;
-
     height: 32px;
-
   }
 
-
   .calendar-day.today.selected::before {
-
     width: 34px;
-
     height: 34px;
-
   }
 
 
@@ -2599,39 +1738,24 @@ footer span {
   ========================================== */
 
   .selected-moment {
-
     padding:
       24px 10px;
-
     margin-top: 20px;
-
   }
-
 
   .selected-location {
-
     font-size: 27px;
-
   }
-
 
   .selected-description {
-
     font-size: 12px;
-
     line-height: 1.6;
-
   }
 
-
   .selected-photo {
-
     max-height: 420px;
-
     object-fit: cover;
-
     margin-top: 18px;
-
   }
 
 
@@ -2640,73 +1764,49 @@ footer span {
   ========================================== */
 
   .important-section {
-
     padding:
       80px 20px;
-
   }
-
 
   .important-date {
-
+    width: 100%;
     gap: 14px;
-
     padding:
       18px 0;
-
   }
-
 
   .important-date-number {
-
     min-width: 48px;
-
     font-size: 27px;
-
   }
 
-
   .important-date-number small {
-
     display: block;
-
     font-family:
       "DM Sans",
       sans-serif;
-
     font-size: 8px;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
-
     color: var(--muted);
-
   }
 
+  .important-date-info {
+    min-width: 0;
+  }
 
   .important-date-title {
-
     font-size: 12px;
-
     line-height: 1.45;
-
   }
-
 
   .important-date-location {
-
     font-size: 10px;
-
     margin-top: 3px;
-
   }
 
-
   .important-date-arrow {
-
     font-size: 13px;
-
   }
 
 
@@ -2715,70 +1815,43 @@ footer span {
   ========================================== */
 
   .summary-section {
-
     padding:
       80px 20px;
-
   }
-
 
   .summary-grid {
-
     display: grid;
-
     grid-template-columns:
       repeat(3, 1fr);
-
     gap: 0;
-
     width: 100%;
-
   }
 
-
   .summary-item {
-
     padding:
       10px 5px;
-
     border-right:
       1px solid
       var(--border);
-
     border-bottom: none;
-
   }
-
 
   .summary-item:last-child {
-
     border-right: none;
-
   }
-
 
   .summary-number {
-
     font-size: 44px;
-
   }
-
 
   .summary-label {
-
     font-size: 8px;
-
     letter-spacing: 1.5px;
-
     margin-top: 8px;
-
   }
 
-
   .summary-description {
-
     font-size: 9px;
-
   }
 
 
@@ -2787,83 +1860,53 @@ footer span {
   ========================================== */
 
   .featured-section {
-
     padding:
       80px 0;
-
   }
-
 
   .featured-section .section-heading {
-
     padding:
       0 20px;
-
   }
-
 
   .featured-moments {
-
     padding:
       0 20px 20px;
-
     gap: 14px;
-
     scroll-snap-type:
       x mandatory;
-
+    touch-action: pan-x;
   }
-
 
   .featured-card {
-
     min-width:
       82vw;
-
     max-width:
       82vw;
-
     scroll-snap-align:
       start;
-
   }
-
 
   .featured-image {
-
     aspect-ratio:
       4 / 5;
-
     border-radius: 2px;
-
   }
-
 
   .featured-info {
-
     padding-top: 12px;
-
   }
-
 
   .featured-date {
-
     font-size: 8px;
-
   }
-
 
   .featured-title {
-
     font-size: 24px;
-
   }
 
-
   .featured-location {
-
     font-size: 9px;
-
   }
 
 
@@ -2872,12 +1915,9 @@ footer span {
   ========================================== */
 
   .view-all-container {
-
     margin-top: 30px;
-
     padding:
       0 20px;
-
   }
 
 
@@ -2886,58 +1926,35 @@ footer span {
   ========================================== */
 
   footer {
-
     padding:
       50px 20px 25px;
-
   }
-
 
   footer p {
-
     font-size: 22px;
-
   }
-
 
   footer span {
-
     font-size: 9px;
-
   }
-
 
   .site-watermark {
-
     display: block;
-
     margin-top: 24px;
-
     font-size: 7px;
-
     letter-spacing: 1px;
-
     color:
       rgba(90, 86, 94, 0.62);
-
     white-space: nowrap;
-
   }
 
-
   .site-watermark .heart-icon {
-
     display: inline;
-
     margin: 0 4px;
-
     color:
       var(--pink-hard);
-
     font-size: 8px;
-
     letter-spacing: 0;
-
   }
 
 
@@ -2946,46 +1963,27 @@ footer span {
   ========================================== */
 
   .photo-lightbox {
-
     padding: 12px;
-
   }
-
 
   .photo-lightbox-image {
-
     max-width: 96vw;
-
     max-height: 82vh;
-
     border-radius: 8px;
-
   }
-
 
   .photo-lightbox-close {
-
     top: 12px;
-
     right: 12px;
-
     width: 40px;
-
     height: 40px;
-
     font-size: 26px;
-
   }
 
-
   .photo-lightbox-caption {
-
     max-width: 90vw;
-
     margin-top: 12px;
-
     font-size: 13px;
-
   }
 
 
@@ -2994,35 +1992,22 @@ footer span {
   ========================================== */
 
   .music-button {
-
     right: 16px;
-
     bottom: 16px;
-
     width: 40px;
-
     height: 40px;
-
     font-size: 14px;
-
     box-shadow:
       0 6px 18px
       rgba(70, 70, 90, 0.14);
-
   }
 
-
   #musicIcon {
-
     flex:
       0 0 40px;
-
     width: 40px;
-
     height: 40px;
-
     font-size: 14px;
-
   }
 
 
@@ -3031,36 +2016,24 @@ footer span {
   ========================================== */
 
   .music-button.music-expanded {
-
     width:
       min(
         270px,
         calc(100vw - 32px)
       );
-
     height: 40px;
-
     border-radius: 22px;
-
     padding:
       0 12px 0 0;
-
     gap: 6px;
-
   }
-
 
   #musicTitle {
-
     max-width:
       calc(100vw - 85px);
-
     font-size: 10px;
-
     letter-spacing: 0;
-
   }
-
 }
 
 
@@ -3071,82 +2044,49 @@ footer span {
 @media (max-width: 380px) {
 
   .music-button {
-
     right: 12px;
-
     bottom: 12px;
-
     width: 38px;
-
     height: 38px;
-
   }
-
 
   #musicIcon {
-
     flex:
       0 0 38px;
-
     width: 38px;
-
     height: 38px;
-
     font-size: 13px;
-
   }
-
 
   .music-button.music-expanded {
-
     width:
       calc(100vw - 24px);
-
     height: 38px;
-
     border-radius: 20px;
-
   }
-
 
   #musicTitle {
-
     max-width:
       calc(100vw - 70px);
-
     font-size: 9px;
-
   }
-
 
   .hero-summary {
-
     gap: 6px;
-
   }
-
 
   .hero-summary-item {
-
     padding:
       13px 5px;
-
   }
-
 
   .hero-summary-item .summary-number {
-
     font-size: 27px;
-
   }
-
 
   .hero-summary-item .summary-label {
-
     font-size: 10px;
-
   }
-
 }
 
 
@@ -3157,50 +2097,30 @@ footer span {
 @media (prefers-reduced-motion: reduce) {
 
   html {
-
     scroll-behavior: auto;
-
   }
-
 
   .recent-preview-item,
   .recent-preview-item img {
-
     transition: none;
-
     animation: none;
-
   }
-
 
   .recent-preview-track {
-
     transition: none !important;
-
   }
-
 
   .recent-moments-preview {
-
     scroll-behavior: auto;
-
   }
-
 
   .hero-summary-item {
-
     transition: none;
-
   }
-
 
   .music-button,
   #musicTitle {
-
     transition: none;
-
     animation: none;
-
   }
-
 }
