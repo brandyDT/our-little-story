@@ -2196,7 +2196,7 @@ footer span {
    MOBILE
 ============================================ */
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
   body {
 
@@ -2214,10 +2214,11 @@ footer span {
 
 .important-dates {
   max-height: 450px;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  touch-action: pan-y;
 }
 
 .important-dates::-webkit-scrollbar {
